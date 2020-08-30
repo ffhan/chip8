@@ -2,6 +2,7 @@ package main
 
 import (
 	"chip8"
+	"fmt"
 )
 
 func main() {
@@ -12,9 +13,9 @@ func main() {
 	//
 	//display.WriteBytes(130, []byte{1, 0, 1, 2})
 
-	display.Write(1, 1, chip8.Sprite7)
-	display.Write(50, 5, chip8.SpriteA)
-	display.Write(25, 10, chip8.Sprite8)
+	fmt.Println(display.Write(1, 2, chip8.Sprite7))
+	fmt.Println(display.Write(60, 5, chip8.SpriteA))
+	fmt.Println(display.Write(25, 30, chip8.Sprite8))
 
 	display.Run()
 }

@@ -178,13 +178,17 @@ func (c *CPU) execute(instr Instruction) error {
 	case RNDVxByte:
 		c.registers[instr.x] = byte(c.random.Uint32()) & instr.kk
 	case DRWVxVyNibble:
-		// todo: xor coords and fill VF, wrap-around
 		pointer := c.iRegister
 		n := instr.n
 		x := instr.x
 		y := instr.y
 		bytes := c.memory.ReadBytes(pointer, n)
-		c.display.Write(x, y, bytes)
+		collision := c.display.Write(x, y, bytes)
+		if collision {
+			c.registers[0xF] = 1
+		} else {
+			c.registers[0xF] = 0
+		}
 	case SKPVx:
 		if c.keyboard.IsDown(Key(c.registers[instr.x])) {
 			c.pc += 1

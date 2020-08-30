@@ -13,8 +13,7 @@ const (
 
 type Display interface {
 	Clear()
-	Write(x, y byte, bytes []byte)
-	Get(pointer uint16) byte
+	Write(x, y byte, bytes []byte) bool
 }
 
 type guiDisplay struct {
@@ -66,20 +65,31 @@ func NewDefaultGuiDisplay() *guiDisplay {
 	return NewGuiDisplay(64, 32)
 }
 
-func (g *guiDisplay) writeByte(x, y, b byte) uint16 {
-	for i := byte(0); i < 8; i++ {
+func (g *guiDisplay) writeByte(x, y, b byte) bool {
+	xb := int(x)
+	yb := int(y)
+	collision := false
+	for i := 0; i < 8; i++ {
 		res := (b & 0x80) >> 7
 		b <<= 1
-		g.buffer[y][x+i] = res
+		oldRes := g.buffer[yb%g.height][(xb+i)%g.width]
+		g.buffer[yb%g.height][(xb+i)%g.width] ^= res
+		if oldRes == 1 && g.buffer[yb%g.height][(xb+i)%g.width] == 1 {
+			collision = true
+		}
 	}
-	return 8
+	return collision
 }
 
-func (g *guiDisplay) Write(x, y byte, bytes []byte) {
+func (g *guiDisplay) Write(x, y byte, bytes []byte) bool {
+	collision := false
 	for i := range bytes {
-		g.writeByte(x, y+byte(i), bytes[i])
+		if g.writeByte(x, y+byte(i), bytes[i]) {
+			collision = true
+		}
 	}
 	g.updateScreen()
+	return collision
 }
 
 func (g *guiDisplay) Clear() {
