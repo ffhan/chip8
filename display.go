@@ -156,7 +156,7 @@ func (g *guiDisplay) writeByte(x, y, b byte) bool {
 		b <<= 1
 		oldRes := g.buffer[yb%g.height][(xb+i)%g.width]
 		g.buffer[yb%g.height][(xb+i)%g.width] ^= res
-		if oldRes == 1 && g.buffer[yb%g.height][(xb+i)%g.width] == 1 {
+		if oldRes == 1 && g.buffer[yb%g.height][(xb+i)%g.width] == 0 {
 			collision = true
 		}
 	}

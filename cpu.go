@@ -118,16 +118,14 @@ func (c *CPU) execute(instr Instruction) error {
 	case CLS:
 		c.display.Clear()
 	case RET:
-		pointer := c.stack[c.sp]
-		c.pc = pointer
 		c.sp -= 1
-		incrementPc = false
+		c.pc = c.stack[c.sp]
 	case JPaddr:
 		c.pc = instr.nnn
 		incrementPc = false
 	case CALLaddr:
-		c.sp += 1
 		c.stack[c.sp] = c.pc
+		c.sp += 1
 		c.pc = instr.nnn
 		incrementPc = false
 	case SEVxByte:
@@ -163,7 +161,7 @@ func (c *CPU) execute(instr Instruction) error {
 			c.registers[0xF] = 0
 		}
 	case SUBVxVy:
-		notBorrow := c.registers[instr.x] > c.registers[instr.y]
+		notBorrow := c.registers[instr.x] >= c.registers[instr.y]
 		c.registers[instr.x] -= c.registers[instr.y]
 		if notBorrow {
 			c.registers[0xF] = 1
@@ -174,7 +172,7 @@ func (c *CPU) execute(instr Instruction) error {
 		c.registers[0xF] = c.registers[instr.x] & 0x1
 		c.registers[instr.x] >>= 1
 	case SUBNVxVy:
-		notBorrow := c.registers[instr.y] > c.registers[instr.x]
+		notBorrow := c.registers[instr.y] >= c.registers[instr.x]
 		c.registers[instr.x] = c.registers[instr.y] - c.registers[instr.x]
 		if notBorrow {
 			c.registers[0xF] = 1
@@ -236,7 +234,7 @@ func (c *CPU) execute(instr Instruction) error {
 		pointer := c.iRegister
 		c.memory.StoreBytes(pointer, hundredths, tenths, ones)
 	case LDIVx:
-		c.memory.StoreBytes(c.iRegister, c.registers[:instr.x]...)
+		c.memory.StoreBytes(c.iRegister, c.registers[:instr.x+1]...)
 	case LDVxI:
 		pointer := c.iRegister
 		for i := range c.registers {

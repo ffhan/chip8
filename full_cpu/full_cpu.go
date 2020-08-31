@@ -10,7 +10,7 @@ func main() {
 	display := chip8.NewDefaultGuiDisplay(keyboard)
 	cpu := chip8.NewCPU(display, chip8.NewPulseAudioSpeaker(chip8.DefaultSpeakerFrequency), keyboard, 12345)
 
-	open, err := os.Open("c8games/MAZE")
+	open, err := os.Open("c8games/TETRIS")
 	if err != nil {
 		panic(err)
 	}
