@@ -60,12 +60,20 @@ func (s *SoundTimer) Set(delay byte) {
 }
 
 func (s *SoundTimer) serviceDelay() {
+	playing := false
 	for {
 		<-s.sub
 		if s.st == 0 {
+			if playing {
+				s.speaker.Stop()
+				playing = false
+			}
 			continue
 		}
 		s.st -= 1
-		s.speaker.Play(DefaultSpeakerFrequency)
+		if !playing {
+			s.speaker.Play()
+			playing = true
+		}
 	}
 }
