@@ -5,7 +5,7 @@ import (
 )
 
 const (
-	clockFrequency = 60 // Hz
+	clockFrequency = 10 // Hz
 )
 
 type Clock struct {

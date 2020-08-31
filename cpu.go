@@ -7,10 +7,12 @@ import (
 	"io"
 	"log"
 	"math/rand"
+	"time"
 )
 
 const (
 	numOfGeneralPurposeRegisters = 16
+	startPointer                 = 0x200
 )
 
 type CPU struct { // todo: delay & sound timers
@@ -46,11 +48,21 @@ func NewCPU(display Display, speaker Speaker, keyboard Keyboard, seed int64) *CP
 		display:  display,
 		speaker:  speaker,
 		keyboard: keyboard,
+		pc:       startPointer,
 		random:   rand.New(rand.NewSource(seed)),
 	}
 }
 
+func (c *CPU) loadSprites() {
+	offset := 0
+	for i, sprite := range Sprites {
+		c.memory.StoreBytes(uint16(i+offset), sprite...)
+		offset += len(sprite)
+	}
+}
+
 func (c *CPU) LoadRom(rom io.ReadCloser) error {
+	c.loadSprites()
 	defer rom.Close()
 	reader := bufio.NewReader(rom)
 	i := 0
@@ -62,13 +74,14 @@ func (c *CPU) LoadRom(rom io.ReadCloser) error {
 			}
 			return nil
 		}
-		c.memory.Store(uint16(i), readByte)
+		c.memory.Store(startPointer+uint16(i), readByte)
 		i += 1
 	}
 }
 
 func (c *CPU) Run() {
-	for {
+	ticker := time.NewTicker(time.Second / clockFrequency)
+	for range ticker.C {
 		err := c.Step()
 		if err != nil {
 			log.Printf("%v\n", err)
@@ -95,7 +108,7 @@ func (c *CPU) execute(instr Instruction) error {
 	incrementPc := true
 	defer func() {
 		if incrementPc {
-			c.pc += 1
+			c.pc += 2
 		}
 	}()
 	// todo: SYSaddr implementation
@@ -115,19 +128,19 @@ func (c *CPU) execute(instr Instruction) error {
 	case CALLaddr:
 		c.sp += 1
 		c.stack[c.sp] = c.pc
-		c.pc = nnn
+		c.pc = instr.nnn
 		incrementPc = false
 	case SEVxByte:
 		if c.registers[instr.x] == instr.kk {
-			c.pc += 1
+			c.pc += 2
 		}
 	case SNEVxByte:
 		if c.registers[instr.x] != instr.kk {
-			c.pc += 1
+			c.pc += 2
 		}
 	case SEVxVy:
 		if c.registers[instr.x] == c.registers[instr.y] {
-			c.pc += 1
+			c.pc += 2
 		}
 	case LDVxByte:
 		c.registers[instr.x] = instr.kk
@@ -169,11 +182,11 @@ func (c *CPU) execute(instr Instruction) error {
 			c.registers[0xF] = 0
 		}
 	case SHLVxVy:
-		c.registers[0xF] = (c.registers[instr.x] & 0x80) >> 7
+		c.registers[0xF] = (c.registers[instr.x] >> 7) & 1
 		c.registers[instr.x] <<= 1
 	case SNEVxVy:
 		if c.registers[instr.x] != c.registers[instr.y] {
-			c.pc += 1
+			c.pc += 2
 		}
 	case LDIAddr:
 		c.iRegister = instr.nnn
@@ -196,11 +209,11 @@ func (c *CPU) execute(instr Instruction) error {
 		}
 	case SKPVx:
 		if c.keyboard.IsDown(Key(c.registers[instr.x])) {
-			c.pc += 1
+			c.pc += 2
 		}
 	case SKNPVx:
 		if !c.keyboard.IsDown(Key(c.registers[instr.x])) {
-			c.pc += 1
+			c.pc += 2
 		}
 	case LDVxDT:
 		c.registers[instr.x] = c.dt.Get()
@@ -213,7 +226,7 @@ func (c *CPU) execute(instr Instruction) error {
 	case ADDIVx:
 		c.iRegister += uint16(c.registers[instr.x])
 	case LDFVx:
-		return errors.New("unimplemented")
+		c.iRegister = 5 * uint16(instr.x)
 	case LDBVx:
 		val := c.registers[instr.x]
 		ones := val % 10

@@ -19,4 +19,10 @@ var (
 	SpriteD = []byte{0xE0, 0x90, 0x90, 0x90, 0xE0}
 	SpriteE = []byte{0xF0, 0x80, 0xF0, 0x80, 0xF0}
 	SpriteF = []byte{0xF0, 0x80, 0xF0, 0x80, 0x80}
+	Sprites = [16][]byte{
+		Sprite0, Sprite1, Sprite2, Sprite3,
+		Sprite4, Sprite5, Sprite6, Sprite7,
+		Sprite8, Sprite9, SpriteA, SpriteB,
+		SpriteC, SpriteD, SpriteE, SpriteF,
+	}
 )
