@@ -57,9 +57,13 @@ func (c *CPU) LoadRom(rom io.ReadCloser) error {
 	for {
 		readByte, err := reader.ReadByte()
 		if err != nil {
-			return err
+			if !errors.Is(err, io.EOF) {
+				return err
+			}
+			return nil
 		}
 		c.memory.Store(uint16(i), readByte)
+		i += 1
 	}
 }
 
@@ -79,6 +83,7 @@ func (c *CPU) Step() error {
 	if err := c.execute(instruction); err != nil {
 		return wrapError(instruction, err)
 	}
+	fmt.Printf("executing %+v\n", instruction)
 	return nil
 }
 
