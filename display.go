@@ -4,6 +4,8 @@ import (
 	"fyne.io/fyne"
 	"fyne.io/fyne/app"
 	"fyne.io/fyne/canvas"
+	"fyne.io/fyne/theme"
+	"fyne.io/fyne/widget"
 	"image/color"
 )
 
@@ -16,29 +18,95 @@ type Display interface {
 	Write(x, y byte, bytes []byte) bool
 }
 
+type myRaster struct {
+	widget.BaseWidget
+	width, height int
+	buffer        [][]byte
+	raster        *canvas.Raster
+	keyboard      Keyboard
+}
+
+type myRenderer struct {
+	render *canvas.Raster
+}
+
+func (m *myRenderer) Layout(size fyne.Size) {
+	m.render.Resize(size)
+}
+
+func (m *myRenderer) BackgroundColor() color.Color {
+	return theme.BackgroundColor()
+}
+
+func (m *myRenderer) Objects() []fyne.CanvasObject {
+	return []fyne.CanvasObject{m.render}
+}
+
+func (m *myRenderer) MinSize() fyne.Size {
+	return m.render.MinSize()
+}
+
+func (m *myRenderer) Refresh() {
+	m.render.Refresh()
+}
+
+func (m *myRenderer) Destroy() {
+}
+
+func (m *myRaster) CreateRenderer() fyne.WidgetRenderer {
+	return &myRenderer{render: m.raster}
+}
+
+func (m *myRaster) FocusGained() {
+}
+
+func (m *myRaster) FocusLost() {
+}
+
+func (m *myRaster) Focused() bool {
+	return false
+}
+
+func (m *myRaster) TypedRune(r rune) {
+}
+
+func (m *myRaster) TypedKey(event *fyne.KeyEvent) {
+}
+
+func (m *myRaster) KeyDown(event *fyne.KeyEvent) {
+	m.keyboard.KeyDown(rune(event.Name[0]))
+}
+
+func (m *myRaster) KeyUp(event *fyne.KeyEvent) {
+	m.keyboard.KeyUp(rune(event.Name[0]))
+}
+
 type guiDisplay struct {
 	buffer        [][]byte // monochrome!
 	width, height int
-	raster        *canvas.Raster
+	raster        *myRaster
 	window        fyne.Window
+	keyboard      Keyboard
 }
 
-func NewGuiDisplay(width, height int) *guiDisplay {
+func NewGuiDisplay(width, height int, keyboard Keyboard) *guiDisplay {
 	buffer := make([][]byte, height)
 	for i := range buffer {
 		buffer[i] = make([]byte, width)
 	}
 	a := app.New()
 	w := a.NewWindow("Hello")
-	w.Resize(fyne.NewSize(width*pixelFactor, height*pixelFactor))
+	size := fyne.NewSize(width*pixelFactor, height*pixelFactor)
+	w.Resize(size)
 	w.CenterOnScreen()
 	w.SetFixedSize(true)
 
 	c := &guiDisplay{
-		buffer: buffer,
-		width:  width,
-		height: height,
-		window: w,
+		buffer:   buffer,
+		width:    width,
+		height:   height,
+		window:   w,
+		keyboard: keyboard,
 	}
 
 	raster := canvas.NewRasterWithPixels(func(x, y, w, h int) color.Color {
@@ -52,17 +120,31 @@ func NewGuiDisplay(width, height int) *guiDisplay {
 		}
 		return color.Black
 	})
-	w.SetContent(raster)
-	c.raster = raster
+
+	cRaster := &myRaster{
+		BaseWidget: widget.BaseWidget{},
+		width:      width,
+		height:     height,
+		buffer:     buffer,
+		raster:     raster,
+		keyboard:   keyboard,
+	}
+	cRaster.ExtendBaseWidget(cRaster)
+	w.SetContent(cRaster)
+	c.raster = cRaster
 	return c
+}
+
+func (g *guiDisplay) GetCanvas() fyne.Canvas {
+	return g.window.Canvas()
 }
 
 func (g *guiDisplay) Run() {
 	g.window.ShowAndRun()
 }
 
-func NewDefaultGuiDisplay() *guiDisplay {
-	return NewGuiDisplay(64, 32)
+func NewDefaultGuiDisplay(keyboard Keyboard) *guiDisplay {
+	return NewGuiDisplay(64, 32, keyboard)
 }
 
 func (g *guiDisplay) writeByte(x, y, b byte) bool {
