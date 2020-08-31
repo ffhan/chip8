@@ -64,7 +64,7 @@ func (m *myRaster) FocusLost() {
 }
 
 func (m *myRaster) Focused() bool {
-	return false
+	return true
 }
 
 func (m *myRaster) TypedRune(r rune) {

@@ -7,12 +7,19 @@ import (
 	"io"
 	"log"
 	"math/rand"
-	"time"
 )
 
 const (
 	numOfGeneralPurposeRegisters = 16
 	startPointer                 = 0x200
+)
+
+type Version int
+
+const (
+	Chip8 Version = iota
+	SuperChip48
+	SCHIP
 )
 
 type CPU struct { // todo: delay & sound timers
@@ -22,14 +29,14 @@ type CPU struct { // todo: delay & sound timers
 	sp        byte                               // stack pointer
 
 	// additional registers
-	dt DelayTimer
-	st SoundTimer
+	dt *DelayTimer
+	st *SoundTimer
 
 	// memory
 	stack  [16]uint16
 	memory Memory
 
-	clock Clock
+	clock *Clock
 
 	// external HW
 	display  Display
@@ -37,33 +44,40 @@ type CPU struct { // todo: delay & sound timers
 	keyboard Keyboard
 
 	random *rand.Rand
+
+	version Version
+	halted  bool
 }
 
-func NewCPU(display Display, speaker Speaker, keyboard Keyboard, seed int64) *CPU {
+func NewCPU(display Display, speaker Speaker, keyboard Keyboard, clock *Clock, delayTimer *DelayTimer, soundTimer *SoundTimer, seed int64) *CPU {
 	return &CPU{
-		dt:       DelayTimer{},
-		st:       SoundTimer{},
+		dt:       delayTimer,
+		st:       soundTimer,
 		memory:   Memory{},
-		clock:    Clock{},
+		clock:    clock,
 		display:  display,
 		speaker:  speaker,
 		keyboard: keyboard,
 		pc:       startPointer,
 		random:   rand.New(rand.NewSource(seed)),
+		version:  Chip8,
 	}
+}
+
+func (c *CPU) SetVersion(version Version) {
+	c.version = version
 }
 
 func (c *CPU) loadSprites() {
 	offset := 0
 	for i, sprite := range Sprites {
 		c.memory.StoreBytes(uint16(i+offset), sprite...)
-		offset += len(sprite)
+		offset += len(sprite) - 1
 	}
 }
 
-func (c *CPU) LoadRom(rom io.ReadCloser) error {
+func (c *CPU) LoadRom(rom io.Reader) error {
 	c.loadSprites()
-	defer rom.Close()
 	reader := bufio.NewReader(rom)
 	i := 0
 	for {
@@ -80,8 +94,12 @@ func (c *CPU) LoadRom(rom io.ReadCloser) error {
 }
 
 func (c *CPU) Run() {
-	ticker := time.NewTicker(time.Second / clockFrequency)
-	for range ticker.C {
+	sub := c.clock.Subscribe()
+	for range sub {
+		if c.halted {
+			c.clock.Stop()
+			return
+		}
 		err := c.Step()
 		if err != nil {
 			log.Printf("%v\n", err)
@@ -90,13 +108,12 @@ func (c *CPU) Run() {
 }
 
 func (c *CPU) Step() error {
-	defer c.clock.Step()
 	instr := c.memory.ReadWord(c.pc)
 	instruction := ParseInstruction(instr)
+	//fmt.Printf("executing %+v\n", instruction)
 	if err := c.execute(instruction); err != nil {
 		return wrapError(instruction, err)
 	}
-	fmt.Printf("executing %+v\n", instruction)
 	return nil
 }
 
@@ -169,8 +186,13 @@ func (c *CPU) execute(instr Instruction) error {
 			c.registers[0xF] = 0
 		}
 	case SHRVxVy:
-		c.registers[0xF] = c.registers[instr.x] & 0x1
-		c.registers[instr.x] >>= 1
+		if c.version == Chip8 {
+			c.registers[0xF] = c.registers[instr.x] & 1
+			c.registers[instr.x] >>= 1
+		} else {
+			c.registers[0xF] = c.registers[instr.y] & 1
+			c.registers[instr.x] = c.registers[instr.y] >> 1
+		}
 	case SUBNVxVy:
 		notBorrow := c.registers[instr.y] >= c.registers[instr.x]
 		c.registers[instr.x] = c.registers[instr.y] - c.registers[instr.x]
@@ -180,8 +202,13 @@ func (c *CPU) execute(instr Instruction) error {
 			c.registers[0xF] = 0
 		}
 	case SHLVxVy:
-		c.registers[0xF] = (c.registers[instr.x] >> 7) & 1
-		c.registers[instr.x] <<= 1
+		if c.version == Chip8 {
+			c.registers[0xF] = (c.registers[instr.x] >> 7) & 1
+			c.registers[instr.x] <<= 1
+		} else {
+			c.registers[0xF] = (c.registers[instr.y] >> 7) & 1
+			c.registers[instr.x] = c.registers[instr.y] << 1
+		}
 	case SNEVxVy:
 		if c.registers[instr.x] != c.registers[instr.y] {
 			c.pc += 2
@@ -199,7 +226,7 @@ func (c *CPU) execute(instr Instruction) error {
 		x := instr.x
 		y := instr.y
 		bytes := c.memory.ReadBytes(pointer, n)
-		collision := c.display.Write(x, y, bytes)
+		collision := c.display.Write(c.registers[x], c.registers[y], bytes)
 		if collision {
 			c.registers[0xF] = 1
 		} else {
@@ -234,12 +261,22 @@ func (c *CPU) execute(instr Instruction) error {
 		pointer := c.iRegister
 		c.memory.StoreBytes(pointer, hundredths, tenths, ones)
 	case LDIVx:
-		c.memory.StoreBytes(c.iRegister, c.registers[:instr.x+1]...)
+		bytes := c.registers[:instr.x+1]
+		c.memory.StoreBytes(c.iRegister, bytes...)
+		if c.version != SCHIP {
+			c.iRegister += uint16(len(bytes))
+		}
 	case LDVxI:
 		pointer := c.iRegister
-		for i := range c.registers {
+		for i := byte(0); i <= instr.x; i++ {
 			c.registers[i] = c.memory.Read(pointer + uint16(i))
 		}
+		if c.version != SCHIP {
+			c.iRegister += uint16(instr.x + 1)
+		}
+	case EXIT:
+		c.halted = true
+		return nil
 	default:
 		return errors.New("unimplemented")
 	}

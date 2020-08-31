@@ -2,10 +2,6 @@ package chip8
 
 // FIXME: timers won't stop when the whole execution has to stop - rethink tickers (use clean goroutines)
 
-const (
-	delayFrequency = 60 // Hz
-)
-
 type DelayTimer struct {
 	dt byte // delay ticker
 

@@ -6,20 +6,11 @@ import (
 )
 
 func main() {
-	keyboard := chip8.NewDefaultKeyboard()
-	display := chip8.NewDefaultGuiDisplay(keyboard)
-	cpu := chip8.NewCPU(display, chip8.NewPulseAudioSpeaker(chip8.DefaultSpeakerFrequency), keyboard, 12345)
-
-	open, err := os.Open("c8games/TETRIS")
+	rom, err := os.Open("chip8-/roms/Tetris [Fran Dachille, 1991].ch8")
 	if err != nil {
 		panic(err)
 	}
+	defer rom.Close()
 
-	if err = cpu.LoadRom(open); err != nil {
-		panic(err)
-	}
-
-	go cpu.Run()
-
-	display.Run()
+	chip8.Run(rom, chip8.SuperChip48)
 }

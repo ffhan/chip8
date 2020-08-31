@@ -265,8 +265,6 @@ func parse0(instr uint16) Opcode {
 		return CLS
 	} else if retMask == instr {
 		return RET
-	} else if instr&scdNibbleMask == scdNibbleMask {
-		return SCDNibble
 	} else if instr == scr {
 		return SCR
 	} else if instr == sclMask {
@@ -277,6 +275,8 @@ func parse0(instr uint16) Opcode {
 		return LOW
 	} else if instr == highMask {
 		return HIGH
+	} else if instr&scdNibbleMask == scdNibbleMask {
+		return SCDNibble
 	}
 	return SYSaddr
 }

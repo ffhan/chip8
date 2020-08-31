@@ -19,11 +19,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c755615e-a323-4f2b-a701-3f4a199f1a9c" name="Default Changelist" comment="bugfixes to pc increment, implemented LDFVx, sprite loading">
+    <list default="true" id="c755615e-a323-4f2b-a701-3f4a199f1a9c" name="Default Changelist" comment="instruction bugfixes">
+      <change afterPath="$PROJECT_DIR$/chip.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/custom_code/custom.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/parser.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clock.go" beforeDir="false" afterPath="$PROJECT_DIR$/clock.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cpu.go" beforeDir="false" afterPath="$PROJECT_DIR$/cpu.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/display.go" beforeDir="false" afterPath="$PROJECT_DIR$/display.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/full_cpu/full_cpu.go" beforeDir="false" afterPath="$PROJECT_DIR$/full_cpu/full_cpu.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/instr.go" beforeDir="false" afterPath="$PROJECT_DIR$/instr.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/keyboard.go" beforeDir="false" afterPath="$PROJECT_DIR$/keyboard.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/timers.go" beforeDir="false" afterPath="$PROJECT_DIR$/timers.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,6 +93,15 @@
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
+    <configuration name="go build chip8/custom_code" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="chip8" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/custom_code/custom.go" />
+      <package value="chip8/custom_code" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build chip8/full_cpu" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="chip8" />
       <working_directory value="$PROJECT_DIR$" />
@@ -106,24 +122,13 @@
       <pattern value="^\QTestCPU_Step\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestCPU_Step in chip8" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="chip8" />
-      <working_directory value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="chip8" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTestCPU_Step\E$" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build chip8/full_cpu" />
+        <item itemvalue="Go Build.go build chip8/custom_code" />
         <item itemvalue="Go Build.go build chip8/cmd" />
         <item itemvalue="Go Build.go build chip8/cmd (1)" />
         <item itemvalue="Go Test.TestCPU_Step in chip8 (1)" />
-        <item itemvalue="Go Test.TestCPU_Step in chip8" />
       </list>
     </recent_temporary>
   </component>
@@ -150,7 +155,8 @@
     <MESSAGE value="basic keyboard implementation, extended graphics" />
     <MESSAGE value="fixed rom loading" />
     <MESSAGE value="bugfixes to pc increment, implemented LDFVx, sprite loading" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugfixes to pc increment, implemented LDFVx, sprite loading" />
+    <MESSAGE value="instruction bugfixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="instruction bugfixes" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -160,67 +166,75 @@
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
     <state x="424" y="214" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.32.1920.1048@0.32.1920.1048" timestamp="1598867629055" />
-    <state x="649" y="358" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1598867597052">
+    <state x="649" y="358" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1598881154474">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state x="649" y="358" key="#com.intellij.fileTypes.FileTypeChooser/0.32.1920.1048@0.32.1920.1048" timestamp="1598867597052" />
-    <state x="1253" y="275" key="#com.intellij.ide.util.MemberChooser" timestamp="1598860949986">
+    <state x="649" y="358" key="#com.intellij.fileTypes.FileTypeChooser/0.32.1920.1048@0.32.1920.1048" timestamp="1598881154474" />
+    <state x="1013" y="256" key="#com.intellij.ide.util.MemberChooser" timestamp="1598883300237">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state x="1253" y="275" key="#com.intellij.ide.util.MemberChooser/0.32.1920.1048@0.32.1920.1048" timestamp="1598860949986" />
+    <state x="1013" y="256" key="#com.intellij.ide.util.MemberChooser/0.32.1920.1048@0.32.1920.1048" timestamp="1598883300237" />
     <state x="2506" y="275" key="#com.intellij.ide.util.MemberChooser/0.32.3840.1048@0.32.3840.1048" timestamp="1598801074650" />
+    <state x="1203" y="304" key="#xdebugger.evaluate" timestamp="1598887275902">
+      <screen x="0" y="32" width="1920" height="1048" />
+    </state>
+    <state x="1203" y="304" key="#xdebugger.evaluate/0.32.1920.1048@0.32.1920.1048" timestamp="1598887275902" />
     <state x="748" y="300" key="FileChooserDialogImpl" timestamp="1598828400080">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
     <state x="748" y="300" key="FileChooserDialogImpl/0.32.1920.1048@0.32.1920.1048" timestamp="1598828400080" />
-    <state width="914" height="233" key="GridCell.Tab.0.bottom" timestamp="1598880478791">
+    <state width="1874" height="332" key="GridCell.Tab.0.bottom" timestamp="1598890118025">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state width="914" height="233" key="GridCell.Tab.0.bottom/0.32.1920.1048@0.32.1920.1048" timestamp="1598880478791" />
+    <state width="1874" height="332" key="GridCell.Tab.0.bottom/0.32.1920.1048@0.32.1920.1048" timestamp="1598890118025" />
     <state width="1874" height="176" key="GridCell.Tab.0.bottom/0.32.3840.1048@0.32.3840.1048" timestamp="1598807277220" />
-    <state width="914" height="233" key="GridCell.Tab.0.center" timestamp="1598880478791">
+    <state width="1874" height="332" key="GridCell.Tab.0.center" timestamp="1598890118025">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state width="914" height="233" key="GridCell.Tab.0.center/0.32.1920.1048@0.32.1920.1048" timestamp="1598880478791" />
+    <state width="1874" height="332" key="GridCell.Tab.0.center/0.32.1920.1048@0.32.1920.1048" timestamp="1598890118025" />
     <state width="1874" height="176" key="GridCell.Tab.0.center/0.32.3840.1048@0.32.3840.1048" timestamp="1598807277220" />
-    <state width="914" height="233" key="GridCell.Tab.0.left" timestamp="1598880478790">
+    <state width="1874" height="332" key="GridCell.Tab.0.left" timestamp="1598890118024">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state width="914" height="233" key="GridCell.Tab.0.left/0.32.1920.1048@0.32.1920.1048" timestamp="1598880478790" />
+    <state width="1874" height="332" key="GridCell.Tab.0.left/0.32.1920.1048@0.32.1920.1048" timestamp="1598890118024" />
     <state width="1874" height="176" key="GridCell.Tab.0.left/0.32.3840.1048@0.32.3840.1048" timestamp="1598807277220" />
-    <state width="914" height="233" key="GridCell.Tab.0.right" timestamp="1598880478791">
+    <state width="1874" height="332" key="GridCell.Tab.0.right" timestamp="1598890118025">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state width="914" height="233" key="GridCell.Tab.0.right/0.32.1920.1048@0.32.1920.1048" timestamp="1598880478791" />
+    <state width="1874" height="332" key="GridCell.Tab.0.right/0.32.1920.1048@0.32.1920.1048" timestamp="1598890118025" />
     <state width="1874" height="176" key="GridCell.Tab.0.right/0.32.3840.1048@0.32.3840.1048" timestamp="1598807277220" />
-    <state width="1874" height="327" key="GridCell.Tab.1.bottom" timestamp="1598876717144">
+    <state width="1874" height="393" key="GridCell.Tab.1.bottom" timestamp="1598888412881">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state width="1874" height="327" key="GridCell.Tab.1.bottom/0.32.1920.1048@0.32.1920.1048" timestamp="1598876717144" />
-    <state width="1874" height="327" key="GridCell.Tab.1.center" timestamp="1598876717144">
+    <state width="1874" height="393" key="GridCell.Tab.1.bottom/0.32.1920.1048@0.32.1920.1048" timestamp="1598888412881" />
+    <state width="1874" height="393" key="GridCell.Tab.1.center" timestamp="1598888412881">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state width="1874" height="327" key="GridCell.Tab.1.center/0.32.1920.1048@0.32.1920.1048" timestamp="1598876717144" />
-    <state width="1874" height="327" key="GridCell.Tab.1.left" timestamp="1598876717144">
+    <state width="1874" height="393" key="GridCell.Tab.1.center/0.32.1920.1048@0.32.1920.1048" timestamp="1598888412881" />
+    <state width="1874" height="393" key="GridCell.Tab.1.left" timestamp="1598888412881">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state width="1874" height="327" key="GridCell.Tab.1.left/0.32.1920.1048@0.32.1920.1048" timestamp="1598876717144" />
-    <state width="1874" height="327" key="GridCell.Tab.1.right" timestamp="1598876717144">
+    <state width="1874" height="393" key="GridCell.Tab.1.left/0.32.1920.1048@0.32.1920.1048" timestamp="1598888412881" />
+    <state width="1874" height="393" key="GridCell.Tab.1.right" timestamp="1598888412881">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state width="1874" height="327" key="GridCell.Tab.1.right/0.32.1920.1048@0.32.1920.1048" timestamp="1598876717144" />
-    <state x="560" y="278" key="Vcs.Push.Dialog.v2" timestamp="1598878836850">
+    <state width="1874" height="393" key="GridCell.Tab.1.right/0.32.1920.1048@0.32.1920.1048" timestamp="1598888412881" />
+    <state x="560" y="278" key="Vcs.Push.Dialog.v2" timestamp="1598881196799">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state x="560" y="278" key="Vcs.Push.Dialog.v2/0.32.1920.1048@0.32.1920.1048" timestamp="1598878836850" />
-    <state width="960" height="524" key="XDebugger.FullValuePopup" timestamp="1598869218561">
+    <state x="560" y="278" key="Vcs.Push.Dialog.v2/0.32.1920.1048@0.32.1920.1048" timestamp="1598881196799" />
+    <state width="960" height="524" key="XDebugger.FullValuePopup" timestamp="1598888070563">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state width="960" height="524" key="XDebugger.FullValuePopup/0.32.1920.1048@0.32.1920.1048" timestamp="1598869218561" />
-    <state width="541" height="198" key="javadoc.popup.new" timestamp="1598857696889">
+    <state width="960" height="524" key="XDebugger.FullValuePopup/0.32.1920.1048@0.32.1920.1048" timestamp="1598888070563" />
+    <state x="677" y="295" width="566" height="522" key="find.popup" timestamp="1598889148981">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state width="541" height="198" key="javadoc.popup.new/0.32.1920.1048@0.32.1920.1048" timestamp="1598857696889" />
+    <state x="677" y="295" width="566" height="522" key="find.popup/0.32.1920.1048@0.32.1920.1048" timestamp="1598889148981" />
+    <state width="541" height="198" key="javadoc.popup.new" timestamp="1598888977162">
+      <screen x="0" y="32" width="1920" height="1048" />
+    </state>
+    <state width="541" height="198" key="javadoc.popup.new/0.32.1920.1048@0.32.1920.1048" timestamp="1598888977162" />
     <state width="1082" height="198" key="javadoc.popup.new/0.32.3840.1048@0.32.3840.1048" timestamp="1598806907675" />
     <state x="808" y="315" key="refactoring.ChangeSignatureDialog" timestamp="1598866693658">
       <screen x="0" y="32" width="1920" height="1048" />
@@ -242,13 +256,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/cpu.go</url>
-          <line>95</line>
-          <option name="timeStamp" value="12" />
+          <line>124</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/full_cpu/full_cpu.go</url>
-          <line>17</line>
-          <option name="timeStamp" value="13" />
+          <url>file://$PROJECT_DIR$/cpu.go</url>
+          <line>228</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
