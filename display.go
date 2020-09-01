@@ -95,7 +95,7 @@ func NewGuiDisplay(width, height int, keyboard Keyboard) *guiDisplay {
 		buffer[i] = make([]byte, width)
 	}
 	a := app.New()
-	w := a.NewWindow("Hello")
+	w := a.NewWindow("Chip-8 emulator")
 	size := fyne.NewSize(width*pixelFactor, height*pixelFactor)
 	w.Resize(size)
 	w.CenterOnScreen()

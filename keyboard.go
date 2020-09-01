@@ -1,7 +1,6 @@
 package chip8
 
 import (
-	"fmt"
 	"sync"
 	"time"
 )
@@ -78,7 +77,6 @@ func (d *defaultKeyboard) MapRuneToKey(r rune) Key {
 }
 
 func (d *defaultKeyboard) KeyDown(r rune) {
-	fmt.Println("down ", string(r))
 	key := d.MapRuneToKey(r)
 	d.pressed.Store(key, true)
 	select {

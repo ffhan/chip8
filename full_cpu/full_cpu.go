@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	rom, err := os.Open("chip8-/roms/Tetris [Fran Dachille, 1991].ch8")
+	rom, err := os.Open("chip8-/roms/Space Invaders [David Winter].ch8")
 	if err != nil {
 		panic(err)
 	}
