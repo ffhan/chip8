@@ -19,14 +19,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c755615e-a323-4f2b-a701-3f4a199f1a9c" name="Default Changelist" comment="minor modifications">
-      <change afterPath="$PROJECT_DIR$/wasm/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wasm/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wasm/wasm.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/chip8.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/chip8.iml" afterDir="false" />
+    <list default="true" id="c755615e-a323-4f2b-a701-3f4a199f1a9c" name="Default Changelist" comment="wasm display, fixed C sprite bytecode">
+      <change afterPath="$PROJECT_DIR$/fyne/display.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pulseaudio/speaker.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sprites.go" beforeDir="false" afterPath="$PROJECT_DIR$/sprites.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chip.go" beforeDir="false" afterPath="$PROJECT_DIR$/runner.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/goterm.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/goterm.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cpu_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom_code/custom.go" beforeDir="false" afterPath="$PROJECT_DIR$/custom_code/custom.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/display.go" beforeDir="false" afterPath="$PROJECT_DIR$/display.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/full_cpu/full_cpu.go" beforeDir="false" afterPath="$PROJECT_DIR$/full_cpu/full_cpu.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/speaker.go" beforeDir="false" afterPath="$PROJECT_DIR$/speaker.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wasm/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/wasm/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wasm/wasm.go" beforeDir="false" afterPath="$PROJECT_DIR$/wasm/wasm.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +72,10 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="GoMoveDeclarationDialog.RECENT_KEY">
+      <recent name="$PROJECT_DIR$/pulseaudio" />
+      <recent name="$PROJECT_DIR$/fyne" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/full_cpu" />
@@ -150,7 +159,8 @@
     <MESSAGE value="instruction bugfixes" />
     <MESSAGE value="working version" />
     <MESSAGE value="minor modifications" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor modifications" />
+    <MESSAGE value="wasm display, fixed C sprite bytecode" />
+    <option name="LAST_COMMIT_MESSAGE" value="wasm display, fixed C sprite bytecode" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -181,25 +191,25 @@
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
     <state x="748" y="300" key="FileChooserDialogImpl/0.32.1920.1048@0.32.1920.1048" timestamp="1598828400080" />
-    <state width="1874" height="151" key="GridCell.Tab.0.bottom" timestamp="1599034656607">
+    <state width="1874" height="151" key="GridCell.Tab.0.bottom" timestamp="1599046815797">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state width="1874" height="151" key="GridCell.Tab.0.bottom/0.32.1920.1048@0.32.1920.1048" timestamp="1599034656607" />
+    <state width="1874" height="151" key="GridCell.Tab.0.bottom/0.32.1920.1048@0.32.1920.1048" timestamp="1599046815797" />
     <state width="1874" height="176" key="GridCell.Tab.0.bottom/0.32.3840.1048@0.32.3840.1048" timestamp="1598807277220" />
-    <state width="1874" height="151" key="GridCell.Tab.0.center" timestamp="1599034656605">
+    <state width="1874" height="151" key="GridCell.Tab.0.center" timestamp="1599046815795">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state width="1874" height="151" key="GridCell.Tab.0.center/0.32.1920.1048@0.32.1920.1048" timestamp="1599034656605" />
+    <state width="1874" height="151" key="GridCell.Tab.0.center/0.32.1920.1048@0.32.1920.1048" timestamp="1599046815795" />
     <state width="1874" height="176" key="GridCell.Tab.0.center/0.32.3840.1048@0.32.3840.1048" timestamp="1598807277220" />
-    <state width="1874" height="151" key="GridCell.Tab.0.left" timestamp="1599034656604">
+    <state width="1874" height="151" key="GridCell.Tab.0.left" timestamp="1599046815793">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state width="1874" height="151" key="GridCell.Tab.0.left/0.32.1920.1048@0.32.1920.1048" timestamp="1599034656604" />
+    <state width="1874" height="151" key="GridCell.Tab.0.left/0.32.1920.1048@0.32.1920.1048" timestamp="1599046815793" />
     <state width="1874" height="176" key="GridCell.Tab.0.left/0.32.3840.1048@0.32.3840.1048" timestamp="1598807277220" />
-    <state width="1874" height="151" key="GridCell.Tab.0.right" timestamp="1599034656606">
+    <state width="1874" height="151" key="GridCell.Tab.0.right" timestamp="1599046815796">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state width="1874" height="151" key="GridCell.Tab.0.right/0.32.1920.1048@0.32.1920.1048" timestamp="1599034656606" />
+    <state width="1874" height="151" key="GridCell.Tab.0.right/0.32.1920.1048@0.32.1920.1048" timestamp="1599046815796" />
     <state width="1874" height="176" key="GridCell.Tab.0.right/0.32.3840.1048@0.32.3840.1048" timestamp="1598807277220" />
     <state width="1874" height="393" key="GridCell.Tab.1.bottom" timestamp="1598890239786">
       <screen x="0" y="32" width="1920" height="1048" />
@@ -221,22 +231,26 @@
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
     <state x="461" y="191" key="SettingsEditor/0.32.1920.1048@0.32.1920.1048" timestamp="1598957746399" />
-    <state x="560" y="278" key="Vcs.Push.Dialog.v2" timestamp="1598947059124">
+    <state x="560" y="278" key="Vcs.Push.Dialog.v2" timestamp="1599035373365">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state x="560" y="278" key="Vcs.Push.Dialog.v2/0.32.1920.1048@0.32.1920.1048" timestamp="1598947059124" />
+    <state x="560" y="278" key="Vcs.Push.Dialog.v2/0.32.1920.1048@0.32.1920.1048" timestamp="1599035373365" />
     <state width="960" height="524" key="XDebugger.FullValuePopup" timestamp="1598888070563">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
     <state width="960" height="524" key="XDebugger.FullValuePopup/0.32.1920.1048@0.32.1920.1048" timestamp="1598888070563" />
-    <state x="677" y="295" width="566" height="522" key="find.popup" timestamp="1598889148981">
+    <state x="742" y="268" key="com.goide.refactor.move.GoMoveDeclarationDialog" timestamp="1599045936090">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state x="677" y="295" width="566" height="522" key="find.popup/0.32.1920.1048@0.32.1920.1048" timestamp="1598889148981" />
-    <state width="541" height="198" key="javadoc.popup.new" timestamp="1599033838037">
+    <state x="742" y="268" key="com.goide.refactor.move.GoMoveDeclarationDialog/0.32.1920.1048@0.32.1920.1048" timestamp="1599045936090" />
+    <state x="677" y="295" width="566" height="522" key="find.popup" timestamp="1599045624527">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state width="541" height="198" key="javadoc.popup.new/0.32.1920.1048@0.32.1920.1048" timestamp="1599033838037" />
+    <state x="677" y="295" width="566" height="522" key="find.popup/0.32.1920.1048@0.32.1920.1048" timestamp="1599045624527" />
+    <state width="541" height="198" key="javadoc.popup.new" timestamp="1599048126224">
+      <screen x="0" y="32" width="1920" height="1048" />
+    </state>
+    <state width="541" height="198" key="javadoc.popup.new/0.32.1920.1048@0.32.1920.1048" timestamp="1599048126224" />
     <state width="1082" height="198" key="javadoc.popup.new/0.32.3840.1048@0.32.3840.1048" timestamp="1598806907675" />
     <state x="808" y="315" key="refactoring.ChangeSignatureDialog" timestamp="1598866693658">
       <screen x="0" y="32" width="1920" height="1048" />
@@ -253,7 +267,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/cmd/goterm.go</url>
-          <line>14</line>
+          <line>16</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">

@@ -4,14 +4,8 @@ import (
 	"io"
 )
 
-func Run(reader io.Reader, version Version) {
-	keyboard := NewDefaultKeyboard()
-
-	display := NewDefaultGuiDisplay(keyboard)
-
+func Run(reader io.Reader, version Version, display Display, keyboard Keyboard, speaker Speaker) {
 	clock := NewClock()
-
-	speaker := NewPulseAudioSpeaker(DefaultSpeakerFrequency)
 
 	delayTimer := NewDelayTimer(clock)
 	soundTimer := NewSoundTimer(speaker, clock)
@@ -26,5 +20,7 @@ func Run(reader io.Reader, version Version) {
 	go clock.Run(ClockFrequency)
 	go cpu.Run()
 
-	display.Run()
+	if err := display.Run(); err != nil {
+		panic(err)
+	}
 }

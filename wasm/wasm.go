@@ -1,8 +1,21 @@
 package main
 
 import (
+	"bytes"
+	"chip8"
 	"syscall/js"
 )
+
+type speaker struct {
+}
+
+func (s *speaker) Play() {
+	js.Global().Invoke("playMusic")
+}
+
+func (s *speaker) Stop() {
+	js.Global().Invoke("stopMusic")
+}
 
 type screen struct {
 	buffer        [][]byte
@@ -18,49 +31,56 @@ func (s *screen) Clear() {
 	}
 }
 
-func (g *screen) writeByte(x, y, b byte) bool {
+func (s *screen) Run() error {
+	s.Clear()
+	return nil
+}
+
+func (s *screen) writeByte(x, y, b byte) bool {
 	xb := int(x)
 	yb := int(y)
 	collision := false
 	for i := 0; i < 8; i++ {
 		res := (b & 0x80) >> 7
 		b <<= 1
-		oldRes := g.buffer[yb%g.height][(xb+i)%g.width]
-		g.buffer[yb%g.height][(xb+i)%g.width] ^= res
-		newRes := g.buffer[yb%g.height][(xb+i)%g.width]
+		oldRes := s.buffer[yb%s.height][(xb+i)%s.width]
+		s.buffer[yb%s.height][(xb+i)%s.width] ^= res
+		newRes := s.buffer[yb%s.height][(xb+i)%s.width]
 		if oldRes == 1 && newRes == 0 {
 			collision = true
 		}
 		if oldRes != newRes {
-			g.write((xb+i)%g.width, yb%g.height, newRes)
+			s.write((xb+i)%s.width, yb%s.height, newRes)
 		}
 	}
 	return collision
 }
 
-func (g *screen) write(x int, y int, value byte) {
+func (s *screen) write(x int, y int, value byte) {
 	if value == 1 {
-		g.context.Set("fillStyle", "white")
+		s.context.Set("fillStyle", "white")
 	} else {
-		g.context.Set("fillStyle", "black")
+		s.context.Set("fillStyle", "black")
 	}
-	g.context.Call("fillRect", x*10, y*10, 10, 10)
+	s.context.Call("fillRect", x*10, y*10, 10, 10)
 }
 
-func (g *screen) Write(x, y byte, bytes []byte) bool {
+func (s *screen) Write(x, y byte, bytes []byte) bool {
 	collision := false
 	for i := range bytes {
-		if g.writeByte(x, y+byte(i), bytes[i]) {
+		if s.writeByte(x, y+byte(i), bytes[i]) {
 			collision = true
 		}
 	}
 	return collision
 }
 
-func main() {
-	c := make(chan struct{}, 0)
+func run(this js.Value, i []js.Value) interface{} {
+	rom := make([]byte, 0xFFF)
+	n := js.CopyBytesToGo(rom, js.Global().Get("document").Get("buffer"))
 
-	println("WASM Go Initialized")
+	rom = rom[:n]
+	romBuf := bytes.NewBuffer(rom)
 
 	width := 64
 	height := 32
@@ -81,12 +101,16 @@ func main() {
 		context: canvas.Call("getContext", "2d"),
 	}
 
-	SpriteA := []byte{0xF0, 0x90, 0xF0, 0x90, 0x90}
-	SpriteC := []byte{0xF0, 0x80, 0x80, 0x80, 0xF0}
+	chip8.Run(romBuf, chip8.Chip8, s, chip8.NewDefaultKeyboard(), &speaker{})
+	return nil
+}
 
-	s.Clear()
-	s.Write(10, 31, SpriteA)
-	s.Write(40, 10, SpriteC)
+func main() {
+	c := make(chan struct{}, 0)
+
+	println("WASM Go Initialized")
+
+	js.Global().Set("run", js.FuncOf(run))
 
 	<-c
 }

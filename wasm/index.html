@@ -6,17 +6,18 @@ license that can be found in the LICENSE file.
 -->
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Go wasm</title>
 </head>
 
 <body>
 <script src="wasm_exec.js"></script>
 {{/*tone js for sound, canvas for drawing*/}}
+<input type="file" id="file">
 <canvas id="screen"></canvas>
-<input type="text" id="value1" />
-<input type="text" id="value2" />
+<button onclick="run()">Run</button>
 <script>
+    document.buffer = new Uint8Array(0xFFF);
     if (!WebAssembly.instantiateStreaming) {
         // polyfill
         WebAssembly.instantiateStreaming = async (resp, importObject) => {
@@ -34,6 +35,36 @@ license that can be found in the LICENSE file.
             await go.run(inst);
         }
     );
+
+    document.getElementById('file').addEventListener('change', function () {
+        var reader = new FileReader();
+        reader.onload = function () {
+
+            var arrayBuffer = this.result;
+            document.buffer = new Uint8Array(arrayBuffer);
+        }
+        reader.readAsArrayBuffer(this.files[0]);
+
+    }, false);
+
+    let context = new AudioContext()
+    let o = context.createOscillator()
+    let g = context.createGain()
+
+    function playMusic() {
+        context = new AudioContext()
+        o = context.createOscillator()
+        g = context.createGain()
+        o.connect(g)
+        g.connect(context.destination)
+        o.start(0)
+    }
+
+    function stopMusic() {
+        g.gain.exponentialRampToValueAtTime(
+            0.00001, context.currentTime + 0.04
+        )
+    }
 </script>
 </body>
 </html>

@@ -2,19 +2,21 @@ package main
 
 import (
 	"chip8"
+	"chip8/fyne"
+	"chip8/pulseaudio"
 	"fmt"
 	"time"
 )
 
 func main() {
 	keyboard := chip8.NewDefaultKeyboard()
-	display := chip8.NewDefaultGuiDisplay(keyboard)
+	display := fyne.NewDefaultGuiDisplay(keyboard)
 	fmt.Println(display.Write(1, 2, chip8.Sprite7))
 	fmt.Println(display.Write(60, 5, chip8.SpriteA))
 	fmt.Println(display.Write(25, 30, chip8.Sprite8))
 
 	go func() {
-		speaker := chip8.NewPulseAudioSpeaker(chip8.DefaultSpeakerFrequency)
+		speaker := pulseaudio.NewPulseAudioSpeaker(chip8.DefaultSpeakerFrequency)
 		speaker.Play()
 
 		time.Sleep(2 * time.Second)
