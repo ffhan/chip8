@@ -10,11 +10,11 @@ type speaker struct {
 }
 
 func (s *speaker) Play() {
-	js.Global().Invoke("playMusic")
+	js.Global().Get("playMusic").Invoke()
 }
 
 func (s *speaker) Stop() {
-	js.Global().Invoke("stopMusic")
+	js.Global().Get("stopMusic").Invoke()
 }
 
 type screen struct {

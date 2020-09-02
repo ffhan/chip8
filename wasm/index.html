@@ -18,6 +18,26 @@ license that can be found in the LICENSE file.
 <button onclick="run()">Run</button>
 <script>
     document.buffer = new Uint8Array(0xFFF);
+
+    let context = new AudioContext()
+    let o = context.createOscillator()
+    let g = context.createGain()
+
+    function playMusic() {
+        context = new AudioContext()
+        o = context.createOscillator()
+        g = context.createGain()
+        o.connect(g)
+        g.connect(context.destination)
+        o.start(0)
+    }
+
+    function stopMusic() {
+        g.gain.exponentialRampToValueAtTime(
+            0.00001, context.currentTime + 0.04
+        )
+    }
+
     if (!WebAssembly.instantiateStreaming) {
         // polyfill
         WebAssembly.instantiateStreaming = async (resp, importObject) => {
@@ -46,25 +66,6 @@ license that can be found in the LICENSE file.
         reader.readAsArrayBuffer(this.files[0]);
 
     }, false);
-
-    let context = new AudioContext()
-    let o = context.createOscillator()
-    let g = context.createGain()
-
-    function playMusic() {
-        context = new AudioContext()
-        o = context.createOscillator()
-        g = context.createGain()
-        o.connect(g)
-        g.connect(context.destination)
-        o.start(0)
-    }
-
-    function stopMusic() {
-        g.gain.exponentialRampToValueAtTime(
-            0.00001, context.currentTime + 0.04
-        )
-    }
 </script>
 </body>
 </html>
