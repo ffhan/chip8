@@ -38,6 +38,14 @@ license that can be found in the LICENSE file.
         )
     }
 
+    window.addEventListener('keydown', ev => {
+        down(ev.key);
+    });
+
+    window.addEventListener('keyup', ev => {
+        up(ev.key);
+    });
+
     if (!WebAssembly.instantiateStreaming) {
         // polyfill
         WebAssembly.instantiateStreaming = async (resp, importObject) => {

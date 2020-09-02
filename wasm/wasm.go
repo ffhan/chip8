@@ -101,7 +101,18 @@ func run(this js.Value, i []js.Value) interface{} {
 		context: canvas.Call("getContext", "2d"),
 	}
 
-	chip8.Run(romBuf, chip8.Chip8, s, chip8.NewDefaultKeyboard(), &speaker{})
+	keyboard := chip8.NewDefaultKeyboard()
+
+	js.Global().Set("down", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+		keyboard.KeyDown(rune(args[0].String()[0]))
+		return nil
+	}))
+	js.Global().Set("up", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+		keyboard.KeyUp(rune(args[0].String()[0]))
+		return nil
+	}))
+
+	chip8.Run(romBuf, chip8.Chip8, s, keyboard, &speaker{})
 	return nil
 }
 
