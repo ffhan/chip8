@@ -36,7 +36,8 @@ type CPU struct { // todo: delay & sound timers
 	stack  [16]uint16
 	memory Memory
 
-	clock *Clock
+	clock      *Clock
+	timerClock *Clock
 
 	// external HW
 	display  Display
@@ -49,18 +50,19 @@ type CPU struct { // todo: delay & sound timers
 	halted  bool
 }
 
-func NewCPU(display Display, speaker Speaker, keyboard Keyboard, clock *Clock, delayTimer *DelayTimer, soundTimer *SoundTimer, seed int64) *CPU {
+func NewCPU(display Display, speaker Speaker, keyboard Keyboard, clock, timerClock *Clock, delayTimer *DelayTimer, soundTimer *SoundTimer, seed int64) *CPU {
 	return &CPU{
-		dt:       delayTimer,
-		st:       soundTimer,
-		memory:   Memory{},
-		clock:    clock,
-		display:  display,
-		speaker:  speaker,
-		keyboard: keyboard,
-		pc:       startPointer,
-		random:   rand.New(rand.NewSource(seed)),
-		version:  Chip8,
+		dt:         delayTimer,
+		st:         soundTimer,
+		memory:     Memory{},
+		clock:      clock,
+		timerClock: timerClock,
+		display:    display,
+		speaker:    speaker,
+		keyboard:   keyboard,
+		pc:         startPointer,
+		random:     rand.New(rand.NewSource(seed)),
+		version:    Chip8,
 	}
 }
 

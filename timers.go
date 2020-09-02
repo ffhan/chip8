@@ -1,5 +1,9 @@
 package chip8
 
+const (
+	TimerFrequency = 60 // Hz
+)
+
 type DelayTimer struct {
 	dt byte // delay ticker
 
