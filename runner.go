@@ -11,7 +11,7 @@ func Run(reader io.Reader, version Version, display Display, keyboard Keyboard, 
 	delayTimer := NewDelayTimer(timerClock)
 	soundTimer := NewSoundTimer(speaker, timerClock)
 
-	cpu := NewCPU(display, speaker, keyboard, clock, timerClock, delayTimer, soundTimer, 12345)
+	cpu := NewCPU(display, speaker, keyboard, clock, timerClock, delayTimer, soundTimer, nil)
 	cpu.SetVersion(version)
 
 	if err := cpu.LoadRom(reader); err != nil {

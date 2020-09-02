@@ -50,7 +50,10 @@ type CPU struct { // todo: delay & sound timers
 	halted  bool
 }
 
-func NewCPU(display Display, speaker Speaker, keyboard Keyboard, clock, timerClock *Clock, delayTimer *DelayTimer, soundTimer *SoundTimer, seed int64) *CPU {
+func NewCPU(display Display, speaker Speaker, keyboard Keyboard, clock, timerClock *Clock, delayTimer *DelayTimer, soundTimer *SoundTimer, randSource rand.Source) *CPU {
+	if randSource == nil {
+		randSource = rand.NewSource(rand.Int63())
+	}
 	return &CPU{
 		dt:         delayTimer,
 		st:         soundTimer,
@@ -61,7 +64,7 @@ func NewCPU(display Display, speaker Speaker, keyboard Keyboard, clock, timerClo
 		speaker:    speaker,
 		keyboard:   keyboard,
 		pc:         startPointer,
-		random:     rand.New(rand.NewSource(seed)),
+		random:     rand.New(randSource),
 		version:    Chip8,
 	}
 }
@@ -133,7 +136,7 @@ func (c *CPU) execute(instr Instruction) error {
 	// todo: SYSaddr implementation
 	switch instr.Opcode {
 	case SYSaddr:
-		return errors.New("unimplemented")
+		break
 	case CLS:
 		c.display.Clear()
 	case RET:
