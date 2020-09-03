@@ -121,22 +121,22 @@
             </svg>
         </button>
         <div class="keyboard">
-            <button type="button" id="key1" class="btn btn-dark">1</button>
-            <button type="button" id="key2" class="btn btn-dark">2</button>
-            <button type="button" id="key3" class="btn btn-dark">3</button>
-            <button type="button" id="keyC" class="btn btn-dark">C</button>
-            <button type="button" id="key4" class="btn btn-dark">4</button>
-            <button type="button" id="key5" class="btn btn-dark">5</button>
-            <button type="button" id="key6" class="btn btn-dark">6</button>
-            <button type="button" id="keyD" class="btn btn-dark">D</button>
-            <button type="button" id="key7" class="btn btn-dark">7</button>
-            <button type="button" id="key8" class="btn btn-dark">8</button>
-            <button type="button" id="key9" class="btn btn-dark">9</button>
-            <button type="button" id="keyE" class="btn btn-dark">E</button>
-            <button type="button" id="keyA" class="btn btn-dark">A</button>
-            <button type="button" id="key0" class="btn btn-dark">0</button>
-            <button type="button" id="keyB" class="btn btn-dark">B</button>
-            <button type="button" id="keyF" class="btn btn-dark">F</button>
+            <button type="button" id="key1" class="btn btn-dark" onmousedown="down('1')" onmouseup="up('1')">1</button>
+            <button type="button" id="key2" class="btn btn-dark" onmousedown="down('2')" onmouseup="up('2')">2</button>
+            <button type="button" id="key3" class="btn btn-dark" onmousedown="down('3')" onmouseup="up('3')">3</button>
+            <button type="button" id="keyC" class="btn btn-dark" onmousedown="down('c')" onmouseup="up('c')">C</button>
+            <button type="button" id="key4" class="btn btn-dark" onmousedown="down('4')" onmouseup="up('4')">4</button>
+            <button type="button" id="key5" class="btn btn-dark" onmousedown="down('5')" onmouseup="up('5')">5</button>
+            <button type="button" id="key6" class="btn btn-dark" onmousedown="down('6')" onmouseup="up('6')">6</button>
+            <button type="button" id="keyD" class="btn btn-dark" onmousedown="down('d')" onmouseup="up('d')">D</button>
+            <button type="button" id="key7" class="btn btn-dark" onmousedown="down('7')" onmouseup="up('7')">7</button>
+            <button type="button" id="key8" class="btn btn-dark" onmousedown="down('8')" onmouseup="up('8')">8</button>
+            <button type="button" id="key9" class="btn btn-dark" onmousedown="down('9')" onmouseup="up('9')">9</button>
+            <button type="button" id="keyE" class="btn btn-dark" onmousedown="down('e')" onmouseup="up('e')">E</button>
+            <button type="button" id="keyA" class="btn btn-dark" onmousedown="down('a')" onmouseup="up('a')">A</button>
+            <button type="button" id="key0" class="btn btn-dark" onmousedown="down('0')" onmouseup="up('0')">0</button>
+            <button type="button" id="keyB" class="btn btn-dark" onmousedown="down('b')" onmouseup="up('b')">B</button>
+            <button type="button" id="keyF" class="btn btn-dark" onmousedown="down('f')" onmouseup="up('f')">F</button>
         </div>
     </div>
 </div>
@@ -151,6 +151,8 @@
     })
 
     const defCol = document.getElementById('keyA').style.backgroundColor;
+
+
 
     window.addEventListener('keydown', ev => {
         let elementId = `key${ev.key.toUpperCase()}`;
