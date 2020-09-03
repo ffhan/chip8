@@ -27,16 +27,14 @@
 <div class="device">
     <div class="cartridge">
         <input type="file" id="file" hidden>
-        <div class="btn-group">
-            <button type="button" class="btn btn-info" onclick="document.getElementById('file').click()">Load ROM
-            </button>
-            <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                <span class="sr-only">Toggle Dropdown</span>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span data-toggle="tooltip" data-placement="top" title="Load ROM from your computer or choose from a library!">Load ROM</span>
             </button>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#" onclick="document.getElementById('file').click()">Load file</a>
+                <a class="dropdown-item" href="#" onclick="document.getElementById('file').click()">Load from a file</a>
                 <div class="dropdown-divider"></div>
+                <h6 class="dropdown-header">Preexisting ROMs</h6>
                 <a class="dropdown-item" href="#" onclick="loadRom('15PUZZLE')">15PUZZLE</a>
                 <a class="dropdown-item" href="#" onclick="loadRom('BLINKY')">BLINKY</a>
                 <a class="dropdown-item" href="#" onclick="loadRom('BLITZ')">BLITZ</a>
@@ -115,7 +113,7 @@
         <canvas id="screen"></canvas>
     </div>
     <div class="controls">
-        <button type="button" class="btn btn-danger" onclick="run()">
+        <button type="button" class="btn btn-danger" id="powerbtn" onclick="runChip()">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-power" fill="currentColor"
                  xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M5.578 4.437a5 5 0 1 0 4.922.044l.5-.866a6 6 0 1 1-5.908-.053l.486.875z"/>
@@ -147,6 +145,10 @@
 <script>
     init();
     document.buffer = new Uint8Array(0xFFF);
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 
     const defCol = document.getElementById('keyA').style.backgroundColor;
 
@@ -192,5 +194,6 @@
             .catch(reason => console.error(reason));
     }
 </script>
+<footer>Made by <a href="https://github.com/ffhan">@ffhan</a></footer>
 </body>
 </html>
