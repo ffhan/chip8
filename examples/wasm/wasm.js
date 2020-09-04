@@ -19,5 +19,6 @@ WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then(
 function runChip() {
     $('#powerbtn').prop('disabled', true);
     $('#dropdownMenuButton').prop('disabled', true);
+    $('#runExampleBtn').prop('disabled', true);
     run();
 }

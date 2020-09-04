@@ -281,7 +281,6 @@
     function runExample() {
         _loadRom('BRIX').then(value => {
             $('#helpModal').modal('toggle');
-            $('#runExampleBtn').prop('disabled', true);
             runChip();
         });
     }

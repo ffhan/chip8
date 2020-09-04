@@ -22,7 +22,6 @@
     <list default="true" id="c755615e-a323-4f2b-a701-3f4a199f1a9c" name="Default Changelist" comment="keyboard working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/examples/wasm/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/examples/wasm/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/wasm/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/examples/wasm/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/examples/wasm/wasm.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/wasm/wasm.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
