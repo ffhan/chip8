@@ -20,7 +20,11 @@ func run(this js.Value, i []js.Value) interface{} {
 	keyboard := chip8.NewDefaultKeyboard()
 	registerKeyboard(keyboard)
 
-	chip8.Run(romBuf, chip8.SuperChip48, wasm.NewDisplay(width, height), keyboard, wasm.NewSpeaker())
+	stopFunc := chip8.Run(romBuf, chip8.Chip8, wasm.NewDisplay(width, height), keyboard, wasm.NewSpeaker())
+	js.Global().Set("stopCpu", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+		stopFunc()
+		return nil
+	}))
 	return nil
 }
 

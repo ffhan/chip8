@@ -16,9 +16,13 @@ WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then(
     }
 );
 
-function runChip() {
-    $('#powerbtn').prop('disabled', true);
-    $('#dropdownMenuButton').prop('disabled', true);
-    $('#runExampleBtn').prop('disabled', true);
-    run();
+function runChip(start = true) {
+    $('#dropdownMenuButton').prop('disabled', start);
+    $('#runExampleBtn').prop('disabled', start);
+    $('#power-indicator').toggleClass('text-success text-danger')
+    if (start) {
+        run();
+    } else {
+        stopCpu();
+    }
 }

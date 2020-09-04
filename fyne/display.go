@@ -144,6 +144,14 @@ func NewDefaultGuiDisplay(keyboard chip8.Keyboard) *guiDisplay {
 	return NewGuiDisplay(64, 32, keyboard)
 }
 
+func (g *guiDisplay) Repaint() {
+	for range g.buffer {
+		for range g.buffer[0] {
+			g.updateScreen()
+		}
+	}
+}
+
 func (g *guiDisplay) writeByte(x, y, b byte) bool {
 	xb := int(x)
 	yb := int(y)
@@ -167,7 +175,6 @@ func (g *guiDisplay) Write(x, y byte, bytes []byte) bool {
 			collision = true
 		}
 	}
-	g.updateScreen()
 	return collision
 }
 

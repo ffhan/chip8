@@ -46,8 +46,10 @@ type CPU struct { // todo: delay & sound timers
 
 	random *rand.Rand
 
-	version Version
-	halted  bool
+	version  Version
+	halted   bool
+	repaint  bool
+	stopChan chan bool
 }
 
 func NewCPU(display Display, speaker Speaker, keyboard Keyboard, clock, timerClock *Clock, delayTimer *DelayTimer, soundTimer *SoundTimer, randSource rand.Source) *CPU {
@@ -66,6 +68,7 @@ func NewCPU(display Display, speaker Speaker, keyboard Keyboard, clock, timerClo
 		pc:         startPointer,
 		random:     rand.New(randSource),
 		version:    Chip8,
+		stopChan:   make(chan bool),
 	}
 }
 
@@ -100,21 +103,31 @@ func (c *CPU) LoadRom(rom io.Reader) error {
 
 func (c *CPU) Run() {
 	sub := c.clock.Subscribe()
-	for range sub {
-		if c.halted {
-			c.clock.Stop()
+	for {
+		select {
+		case <-sub:
+			if c.halted {
+				c.clock.Stop()
+				return
+			}
+			err := c.Step()
+			if err != nil {
+				log.Printf("%v\n", err)
+			}
+		case <-c.stopChan:
 			return
 		}
-		err := c.Step()
-		if err != nil {
-			log.Printf("%v\n", err)
-		}
 	}
+}
+
+func (c *CPU) Stop() {
+	c.stopChan <- true
 }
 
 func (c *CPU) Step() error {
 	instr := c.memory.ReadWord(c.pc)
 	instruction := ParseInstruction(instr)
+	//fmt.Println(instruction) // this can produce a panic in WASM pre 1.15 version: https://github.com/golang/go/issues/40081
 	//fmt.Printf("executing %+v\n", instruction)
 	if err := c.execute(instruction); err != nil {
 		return wrapError(instruction, err)
@@ -129,6 +142,10 @@ func wrapError(instruction Instruction, err error) error {
 func (c *CPU) execute(instr Instruction) error {
 	incrementPc := true
 	defer func() {
+		if c.repaint {
+			c.display.Repaint()
+			c.repaint = false
+		}
 		if incrementPc {
 			c.pc += 2
 		}
@@ -139,6 +156,7 @@ func (c *CPU) execute(instr Instruction) error {
 		break
 	case CLS:
 		c.display.Clear()
+		c.repaint = true
 	case RET:
 		c.sp -= 1
 		c.pc = c.stack[c.sp]
@@ -237,6 +255,7 @@ func (c *CPU) execute(instr Instruction) error {
 		} else {
 			c.registers[0xF] = 0
 		}
+		c.repaint = true
 	case SKPVx:
 		if c.keyboard.IsDown(Key(c.registers[instr.x])) {
 			c.pc += 2

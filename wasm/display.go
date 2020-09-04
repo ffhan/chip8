@@ -30,7 +30,7 @@ func NewDisplay(width int, height int) *display {
 func (d *display) Clear() {
 	for y := 0; y < d.height; y++ {
 		for x := 0; x < d.width; x++ {
-			d.write(x, y, 0)
+			d.buffer[y][x] = 0
 		}
 	}
 }
@@ -38,6 +38,14 @@ func (d *display) Clear() {
 func (d *display) Run() error {
 	d.Clear()
 	return nil
+}
+
+func (d *display) Repaint() {
+	for y := range d.buffer {
+		for x := range d.buffer[y] {
+			d.write(x, y, d.buffer[y][x])
+		}
+	}
 }
 
 func (d *display) writeByte(x, y, b byte) bool {
@@ -52,9 +60,6 @@ func (d *display) writeByte(x, y, b byte) bool {
 		newRes := d.buffer[yb%d.height][(xb+i)%d.width]
 		if oldRes == 1 && newRes == 0 {
 			collision = true
-		}
-		if oldRes != newRes {
-			d.write((xb+i)%d.width, yb%d.height, newRes)
 		}
 	}
 	return collision

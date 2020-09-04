@@ -35,8 +35,8 @@ type Keyboard interface {
 
 var (
 	keyMappings = map[rune]Key{
-		'A': KeyA, 'B': KeyB, 'C': KeyC, 'D': KeyD,
-		'E': KeyE, 'F': KeyF, '0': Key0, '1': Key1,
+		'a': KeyA, 'b': KeyB, 'c': KeyC, 'd': KeyD,
+		'e': KeyE, 'f': KeyF, '0': Key0, '1': Key1,
 		'2': Key2, '3': Key3, '4': Key4, '5': Key5,
 		'6': Key6, '7': Key7, '8': Key8, '9': Key9,
 	}

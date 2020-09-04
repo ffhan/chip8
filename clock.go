@@ -5,22 +5,24 @@ import (
 )
 
 const (
-	ClockFrequency = 60 // Hz
+	ClockFrequency = 500 // Hz
 )
 
 type Clock struct {
-	subs   []chan bool
-	ticker *time.Ticker
+	subs      []chan bool
+	ticker    *time.Ticker
+	frequency int64
 }
 
-func NewClock() *Clock {
+func NewClock(frequency int64) *Clock {
 	return &Clock{
-		subs: make([]chan bool, 0),
+		subs:      make([]chan bool, 0),
+		frequency: frequency,
 	}
 }
 
-func (c *Clock) Run(frequency int64) {
-	c.ticker = time.NewTicker(time.Second / time.Duration(frequency))
+func (c *Clock) Run() {
+	c.ticker = time.NewTicker(time.Second / time.Duration(c.frequency))
 	for range c.ticker.C {
 		c.dispatch()
 	}
@@ -45,4 +47,8 @@ func (c *Clock) Subscribe() <-chan bool {
 	sub := make(chan bool)
 	c.subs = append(c.subs, sub)
 	return sub
+}
+
+func (c *Clock) Frequency() int64 {
+	return c.frequency
 }

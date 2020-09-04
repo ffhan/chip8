@@ -19,10 +19,39 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c755615e-a323-4f2b-a701-3f4a199f1a9c" name="Default Changelist" comment="basic helper, removed some duplicate roms">
+    <list default="true" id="c755615e-a323-4f2b-a701-3f4a199f1a9c" name="Default Changelist" comment="small bugfixes">
+      <change afterPath="$PROJECT_DIR$/examples/wasm/help/MERLIN.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/wasm/help/MISSILE.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/wasm/help/PONG.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/wasm/help/PONG2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/wasm/help/TANK.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/wasm/help/TICTAC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/wasm/help/UFO.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/wasm/help/VBRIX.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/wasm/help/VERS.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/wasm/help/WIPEOFF.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clock.go" beforeDir="false" afterPath="$PROJECT_DIR$/clock.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cpu.go" beforeDir="false" afterPath="$PROJECT_DIR$/cpu.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/display.go" beforeDir="false" afterPath="$PROJECT_DIR$/display.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/fyne/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/examples/fyne/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/wasm/help/KALEID.html" beforeDir="false" afterPath="$PROJECT_DIR$/examples/wasm/help/KALEID.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/wasm/help/MAZE.html" beforeDir="false" afterPath="$PROJECT_DIR$/examples/wasm/help/MAZE.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/examples/wasm/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/examples/wasm/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/wasm/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/examples/wasm/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/wasm/wasm.go" beforeDir="false" afterPath="$PROJECT_DIR$/examples/wasm/wasm.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/wasm/wasm.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/wasm/wasm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fyne/display.go" beforeDir="false" afterPath="$PROJECT_DIR$/fyne/display.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/keyboard.go" beforeDir="false" afterPath="$PROJECT_DIR$/keyboard.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roms/Particle Demo [zeroZshadow, 2008].txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/roms/Pong (alt).ch8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/roms/Sirpinski [Sergey Naydenov, 2010].ch8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/roms/Space Invaders [David Winter].ch8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/roms/Trip8 Demo (2008) [Revival Studios].txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/roms/Zero Demo [zeroZshadow, 2007].txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runner.go" beforeDir="false" afterPath="$PROJECT_DIR$/runner.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/timers.go" beforeDir="false" afterPath="$PROJECT_DIR$/timers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wasm/display.go" beforeDir="false" afterPath="$PROJECT_DIR$/wasm/display.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +67,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="/usr/lib/go" />
+  <component name="GOROOT" path="$USER_HOME$/go/go1.15.1" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -62,9 +91,15 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/examples/wasm/help" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="go.sdk" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/roms" />
+      <recent name="$PROJECT_DIR$/examples" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/full_cpu" />
+    </key>
     <key name="GoMoveDeclarationDialog.RECENT_KEY">
       <recent name="$PROJECT_DIR$/wasm" />
       <recent name="$PROJECT_DIR$/pulseaudio" />
@@ -72,12 +107,6 @@
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/examples/wasm/help" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/roms" />
-      <recent name="$PROJECT_DIR$/examples" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/full_cpu" />
     </key>
   </component>
   <component name="RunManager" selected="Go Build.go build main.go">
@@ -115,9 +144,28 @@
       <filePath value="$PROJECT_DIR$/examples/wasm/main.go" />
       <package value="chip8/wasm" />
       <directory value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="RunConfigurationTask" enabled="true" run_configuration_name="go build wasm.go" run_configuration_type="GoApplicationRunConfiguration" />
+      </method>
+    </configuration>
+    <configuration name="main.wasm" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="chip8" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i -o main.wasm" />
+      <envs>
+        <env name="GOOS" value="js" />
+        <env name="GOARCH" value="wasm" />
+      </envs>
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/examples/wasm/wasm.go" />
+      <package value="chip8" />
+      <directory value="$PROJECT_DIR$" />
+      <output_directory value="$PROJECT_DIR$/examples/wasm/" />
+      <option name="run" value="false" />
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Go Build.main.wasm" />
       <item itemvalue="Go Build.go build chip8/cmd" />
       <item itemvalue="Go Build.go build chip8/examples/bytecode" />
       <item itemvalue="Go Build.go build chip8/examples/fyne" />
@@ -126,8 +174,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build main.go" />
-        <item itemvalue="Go Build.go build chip8/examples/bytecode" />
         <item itemvalue="Go Build.go build chip8/examples/fyne" />
+        <item itemvalue="Go Build.go build chip8/examples/bytecode" />
         <item itemvalue="Go Build.go build chip8/cmd" />
       </list>
     </recent_temporary>
@@ -180,7 +228,8 @@
     <MESSAGE value="keyboard working" />
     <MESSAGE value="run example button disable on every run" />
     <MESSAGE value="basic helper, removed some duplicate roms" />
-    <option name="LAST_COMMIT_MESSAGE" value="basic helper, removed some duplicate roms" />
+    <MESSAGE value="small bugfixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="small bugfixes" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -190,15 +239,20 @@
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
     <state x="742" y="264" width="435" height="607" key="#Build_Tags_&amp;_Vendoring/0.32.1920.1048@0.32.1920.1048" timestamp="1598957800890" />
-    <state x="2093" y="173" width="1071" height="809" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599217219889">
+    <state x="2093" y="173" width="1071" height="817" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599232008697">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="173" y="200" width="1071" height="809" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.32.1920.1048@0.32.1920.1048" timestamp="1599069983049" />
-    <state x="2093" y="173" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599217219889" />
-    <state x="649" y="358" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1599071806817">
-      <screen x="0" y="32" width="1920" height="1048" />
+    <state x="2093" y="173" width="1071" height="817" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599232008697" />
+    <state x="2569" y="336" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1599231965130">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="649" y="358" key="#com.intellij.fileTypes.FileTypeChooser/0.32.1920.1048@0.32.1920.1048" timestamp="1599071806817" />
+    <state x="2569" y="336" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599231965130" />
+    <state x="2416" y="236" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1599231784571">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2416" y="236" key="#com.intellij.ide.macro.MacrosDialog/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599231784571" />
     <state x="1013" y="256" key="#com.intellij.ide.util.MemberChooser" timestamp="1599069634853">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
@@ -208,34 +262,39 @@
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
     <state x="1203" y="304" key="#xdebugger.evaluate/0.32.1920.1048@0.32.1920.1048" timestamp="1598887275902" />
-    <state x="748" y="300" key="FileChooserDialogImpl" timestamp="1599144876906">
-      <screen x="0" y="32" width="1920" height="1048" />
+    <state x="2493" y="322" key="EnvironmentVariablesDialog" timestamp="1599231944143">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2493" y="322" key="EnvironmentVariablesDialog/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599231944143" />
+    <state x="2668" y="276" key="FileChooserDialogImpl" timestamp="1599231818174">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="748" y="300" key="FileChooserDialogImpl/0.32.1920.1048@0.32.1920.1048" timestamp="1599144876906" />
-    <state width="1874" height="472" key="GridCell.Tab.0.bottom" timestamp="1599222118057">
+    <state x="2668" y="276" key="FileChooserDialogImpl/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599231818174" />
+    <state width="1874" height="103" key="GridCell.Tab.0.bottom" timestamp="1599240729420">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="1874" height="208" key="GridCell.Tab.0.bottom/0.32.1920.1048@0.32.1920.1048" timestamp="1599147836560" />
     <state width="1874" height="176" key="GridCell.Tab.0.bottom/0.32.3840.1048@0.32.3840.1048" timestamp="1598807277220" />
-    <state width="1874" height="472" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599222118057" />
-    <state width="1874" height="472" key="GridCell.Tab.0.center" timestamp="1599222118057">
+    <state width="1874" height="103" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599240729420" />
+    <state width="1874" height="103" key="GridCell.Tab.0.center" timestamp="1599240729420">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="1874" height="208" key="GridCell.Tab.0.center/0.32.1920.1048@0.32.1920.1048" timestamp="1599147836558" />
     <state width="1874" height="176" key="GridCell.Tab.0.center/0.32.3840.1048@0.32.3840.1048" timestamp="1598807277220" />
-    <state width="1874" height="472" key="GridCell.Tab.0.center/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599222118057" />
-    <state width="1874" height="472" key="GridCell.Tab.0.left" timestamp="1599222118057">
+    <state width="1874" height="103" key="GridCell.Tab.0.center/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599240729420" />
+    <state width="1874" height="103" key="GridCell.Tab.0.left" timestamp="1599240729420">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="1874" height="208" key="GridCell.Tab.0.left/0.32.1920.1048@0.32.1920.1048" timestamp="1599147836556" />
     <state width="1874" height="176" key="GridCell.Tab.0.left/0.32.3840.1048@0.32.3840.1048" timestamp="1598807277220" />
-    <state width="1874" height="472" key="GridCell.Tab.0.left/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599222118057" />
-    <state width="1874" height="472" key="GridCell.Tab.0.right" timestamp="1599222118057">
+    <state width="1874" height="103" key="GridCell.Tab.0.left/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599240729420" />
+    <state width="1874" height="103" key="GridCell.Tab.0.right" timestamp="1599240729420">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="1874" height="208" key="GridCell.Tab.0.right/0.32.1920.1048@0.32.1920.1048" timestamp="1599147836558" />
     <state width="1874" height="176" key="GridCell.Tab.0.right/0.32.3840.1048@0.32.3840.1048" timestamp="1598807277220" />
-    <state width="1874" height="472" key="GridCell.Tab.0.right/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599222118057" />
+    <state width="1874" height="103" key="GridCell.Tab.0.right/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599240729420" />
     <state width="1874" height="393" key="GridCell.Tab.1.bottom" timestamp="1598890239786">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
@@ -252,15 +311,20 @@
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
     <state width="1874" height="393" key="GridCell.Tab.1.right/0.32.1920.1048@0.32.1920.1048" timestamp="1598890239786" />
-    <state x="461" y="191" key="SettingsEditor" timestamp="1598957746399">
-      <screen x="0" y="32" width="1920" height="1048" />
+    <state x="2381" y="164" key="SettingsEditor" timestamp="1599231536093">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="461" y="191" key="SettingsEditor/0.32.1920.1048@0.32.1920.1048" timestamp="1598957746399" />
-    <state x="2480" y="254" key="Vcs.Push.Dialog.v2" timestamp="1599220115573">
+    <state x="2381" y="164" key="SettingsEditor/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599231536093" />
+    <state x="3089" y="290" width="540" height="524" key="StructurePopup" timestamp="1599237784730">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="3089" y="290" width="540" height="524" key="StructurePopup/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599237784730" />
+    <state x="2480" y="254" key="Vcs.Push.Dialog.v2" timestamp="1599223461923">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="560" y="278" key="Vcs.Push.Dialog.v2/0.32.1920.1048@0.32.1920.1048" timestamp="1599209568988" />
-    <state x="2480" y="254" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599220115573" />
+    <state x="2480" y="254" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599223461923" />
     <state width="960" height="524" key="XDebugger.FullValuePopup" timestamp="1598888070563">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
@@ -273,16 +337,17 @@
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
     <state x="772" y="471" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.32.1920.1048@0.32.1920.1048" timestamp="1599069612478" />
-    <state x="677" y="295" width="566" height="606" key="find.popup" timestamp="1599208665018">
-      <screen x="0" y="32" width="1920" height="1048" />
+    <state x="2597" y="271" width="566" height="625" key="find.popup" timestamp="1599235750383">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="677" y="295" width="566" height="606" key="find.popup/0.32.1920.1048@0.32.1920.1048" timestamp="1599208665018" />
-    <state width="541" height="205" key="javadoc.popup.new" timestamp="1599217445242">
+    <state x="2597" y="271" width="566" height="625" key="find.popup/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599235750383" />
+    <state width="541" height="205" key="javadoc.popup.new" timestamp="1599238354989">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="541" height="198" key="javadoc.popup.new/0.32.1920.1048@0.32.1920.1048" timestamp="1599208948415" />
     <state width="1082" height="198" key="javadoc.popup.new/0.32.3840.1048@0.32.3840.1048" timestamp="1598806907675" />
-    <state width="541" height="205" key="javadoc.popup.new/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599217445242" />
+    <state width="541" height="205" key="javadoc.popup.new/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599238354989" />
     <state x="808" y="315" key="refactoring.ChangeSignatureDialog" timestamp="1598866693658">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
@@ -300,11 +365,6 @@
           <url>file://$PROJECT_DIR$/cmd/goterm.go</url>
           <line>16</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/cpu.go</url>
-          <line>233</line>
-          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

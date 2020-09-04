@@ -11,7 +11,7 @@ import (
 func main() {
 	romPath := flag.Arg(0)
 	if romPath == "" {
-		romPath = "chip8-/roms/Brix [Andreas Gustafsson, 1990].ch8"
+		romPath = "BC_test.ch8"
 	}
 
 	keyboard := chip8.NewDefaultKeyboard()
