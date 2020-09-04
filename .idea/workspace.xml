@@ -19,10 +19,27 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c755615e-a323-4f2b-a701-3f4a199f1a9c" name="Default Changelist" comment="keyboard working">
+    <list default="true" id="c755615e-a323-4f2b-a701-3f4a199f1a9c" name="Default Changelist" comment="run example button disable on every run">
+      <change afterPath="$PROJECT_DIR$/examples/wasm/help/15PUZZLE.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/wasm/help/BLINKY.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/wasm/help/Breakout [Carmelo Cortez, 1979].ch8.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/wasm/help/Brix [Andreas Gustafsson, 1990].ch8.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/wasm/help/INVADERS.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/wasm/help/KALEID.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/wasm/help/MAZE.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/wasm/help/TETRIS.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/wasm/display.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/wasm/display.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/examples/wasm/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/examples/wasm/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/wasm/wasm.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/wasm/wasm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/wasm/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/examples/wasm/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/keyboard.go" beforeDir="false" afterPath="$PROJECT_DIR$/keyboard.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roms/BRIX" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/roms/Brix [Andreas Gustafsson, 1990].ch8" beforeDir="false" afterPath="$PROJECT_DIR$/roms/Brix [Andreas Gustafsson, 1990].ch8" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roms/Maze (alt) [David Winter, 199x].ch8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/roms/Maze (alt) [David Winter, 199x].txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/roms/Maze [David Winter, 199x].ch8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/roms/Maze [David Winter, 199x].txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/roms/jason.ch8" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,9 +49,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Go File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -59,7 +76,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../chip8-wasm" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/examples/wasm/help" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -69,6 +86,9 @@
       <recent name="$PROJECT_DIR$/wasm" />
       <recent name="$PROJECT_DIR$/pulseaudio" />
       <recent name="$PROJECT_DIR$/fyne" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/examples/wasm/help" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/roms" />
@@ -175,7 +195,8 @@
     <MESSAGE value="ui work" />
     <MESSAGE value="updated readme" />
     <MESSAGE value="keyboard working" />
-    <option name="LAST_COMMIT_MESSAGE" value="keyboard working" />
+    <MESSAGE value="run example button disable on every run" />
+    <option name="LAST_COMMIT_MESSAGE" value="run example button disable on every run" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -185,10 +206,11 @@
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
     <state x="742" y="264" width="435" height="607" key="#Build_Tags_&amp;_Vendoring/0.32.1920.1048@0.32.1920.1048" timestamp="1598957800890" />
-    <state x="173" y="200" width="1071" height="809" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599069983049">
-      <screen x="0" y="32" width="1920" height="1048" />
+    <state x="2093" y="173" width="1071" height="809" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599217219889">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="173" y="200" width="1071" height="809" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.32.1920.1048@0.32.1920.1048" timestamp="1599069983049" />
+    <state x="2093" y="173" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599217219889" />
     <state x="649" y="358" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1599071806817">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
@@ -206,26 +228,30 @@
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
     <state x="748" y="300" key="FileChooserDialogImpl/0.32.1920.1048@0.32.1920.1048" timestamp="1599144876906" />
-    <state width="1874" height="208" key="GridCell.Tab.0.bottom" timestamp="1599147836560">
-      <screen x="0" y="32" width="1920" height="1048" />
+    <state width="1874" height="89" key="GridCell.Tab.0.bottom" timestamp="1599219612509">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="1874" height="208" key="GridCell.Tab.0.bottom/0.32.1920.1048@0.32.1920.1048" timestamp="1599147836560" />
     <state width="1874" height="176" key="GridCell.Tab.0.bottom/0.32.3840.1048@0.32.3840.1048" timestamp="1598807277220" />
-    <state width="1874" height="208" key="GridCell.Tab.0.center" timestamp="1599147836558">
-      <screen x="0" y="32" width="1920" height="1048" />
+    <state width="1874" height="89" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599219612509" />
+    <state width="1874" height="89" key="GridCell.Tab.0.center" timestamp="1599219612509">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="1874" height="208" key="GridCell.Tab.0.center/0.32.1920.1048@0.32.1920.1048" timestamp="1599147836558" />
     <state width="1874" height="176" key="GridCell.Tab.0.center/0.32.3840.1048@0.32.3840.1048" timestamp="1598807277220" />
-    <state width="1874" height="208" key="GridCell.Tab.0.left" timestamp="1599147836556">
-      <screen x="0" y="32" width="1920" height="1048" />
+    <state width="1874" height="89" key="GridCell.Tab.0.center/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599219612509" />
+    <state width="1874" height="89" key="GridCell.Tab.0.left" timestamp="1599219612509">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="1874" height="208" key="GridCell.Tab.0.left/0.32.1920.1048@0.32.1920.1048" timestamp="1599147836556" />
     <state width="1874" height="176" key="GridCell.Tab.0.left/0.32.3840.1048@0.32.3840.1048" timestamp="1598807277220" />
-    <state width="1874" height="208" key="GridCell.Tab.0.right" timestamp="1599147836558">
-      <screen x="0" y="32" width="1920" height="1048" />
+    <state width="1874" height="89" key="GridCell.Tab.0.left/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599219612509" />
+    <state width="1874" height="89" key="GridCell.Tab.0.right" timestamp="1599219612509">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="1874" height="208" key="GridCell.Tab.0.right/0.32.1920.1048@0.32.1920.1048" timestamp="1599147836558" />
     <state width="1874" height="176" key="GridCell.Tab.0.right/0.32.3840.1048@0.32.3840.1048" timestamp="1598807277220" />
+    <state width="1874" height="89" key="GridCell.Tab.0.right/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599219612509" />
     <state width="1874" height="393" key="GridCell.Tab.1.bottom" timestamp="1598890239786">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
@@ -246,10 +272,10 @@
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
     <state x="461" y="191" key="SettingsEditor/0.32.1920.1048@0.32.1920.1048" timestamp="1598957746399" />
-    <state x="560" y="278" key="Vcs.Push.Dialog.v2" timestamp="1599146358890">
+    <state x="560" y="278" key="Vcs.Push.Dialog.v2" timestamp="1599209568988">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
-    <state x="560" y="278" key="Vcs.Push.Dialog.v2/0.32.1920.1048@0.32.1920.1048" timestamp="1599146358890" />
+    <state x="560" y="278" key="Vcs.Push.Dialog.v2/0.32.1920.1048@0.32.1920.1048" timestamp="1599209568988" />
     <state width="960" height="524" key="XDebugger.FullValuePopup" timestamp="1598888070563">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
@@ -266,11 +292,12 @@
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
     <state x="677" y="295" width="566" height="606" key="find.popup/0.32.1920.1048@0.32.1920.1048" timestamp="1599208665018" />
-    <state width="541" height="198" key="javadoc.popup.new" timestamp="1599208948415">
-      <screen x="0" y="32" width="1920" height="1048" />
+    <state width="541" height="205" key="javadoc.popup.new" timestamp="1599217445242">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="541" height="198" key="javadoc.popup.new/0.32.1920.1048@0.32.1920.1048" timestamp="1599208948415" />
     <state width="1082" height="198" key="javadoc.popup.new/0.32.3840.1048@0.32.3840.1048" timestamp="1598806907675" />
+    <state width="541" height="205" key="javadoc.popup.new/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599217445242" />
     <state x="808" y="315" key="refactoring.ChangeSignatureDialog" timestamp="1598866693658">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>

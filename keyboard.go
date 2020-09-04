@@ -1,6 +1,7 @@
 package chip8
 
 import (
+	"fmt"
 	"sync"
 	"time"
 )
@@ -33,47 +34,39 @@ type Keyboard interface {
 	KeyUp(r rune)
 }
 
+var (
+	keyMappings = map[rune]Key{
+		'A': KeyA, 'B': KeyB, 'C': KeyC, 'D': KeyD,
+		'E': KeyE, 'F': KeyF, '0': Key0, '1': Key1,
+		'2': Key2, '3': Key3, '4': Key4, '5': Key5,
+		'6': Key6, '7': Key7, '8': Key8, '9': Key9,
+	}
+	reverseKeyMappings = map[Key]rune{
+		KeyA: 'A', KeyB: 'B', KeyC: 'C', KeyD: 'D',
+		KeyE: 'E', KeyF: 'F', Key0: '0', Key1: '1',
+		Key2: '2', Key3: '3', Key4: '4', Key5: '5',
+		Key6: '6', Key7: '7', Key8: '8', Key9: '9',
+	}
+)
+
 type defaultKeyboard struct {
-	pressed sync.Map
-	events  chan Key
+	pressed      sync.Map
+	events       chan Key
+	searchedKeys map[string]bool
 }
 
 func (d *defaultKeyboard) MapRuneToKey(r rune) Key {
-	switch r {
-	case 'A':
-		return KeyA
-	case 'B':
-		return KeyB
-	case 'C':
-		return KeyC
-	case 'D':
-		return KeyD
-	case 'E':
-		return KeyE
-	case 'F':
-		return KeyF
-	case '0':
-		return Key0
-	case '1':
-		return Key1
-	case '2':
-		return Key2
-	case '3':
-		return Key3
-	case '4':
-		return Key4
-	case '5':
-		return Key5
-	case '6':
-		return Key6
-	case '7':
-		return Key7
-	case '8':
-		return Key8
-	case '9':
-		return Key9
+	if val, ok := keyMappings[r]; ok {
+		return val
 	}
 	return Key0
+}
+
+func (d *defaultKeyboard) MapKeyToRune(k Key) rune {
+	if val, ok := reverseKeyMappings[k]; ok {
+		return val
+	}
+	return '0'
 }
 
 func (d *defaultKeyboard) KeyDown(r rune) {
@@ -92,10 +85,18 @@ func (d *defaultKeyboard) KeyUp(r rune) {
 }
 
 func NewDefaultKeyboard() *defaultKeyboard {
-	return &defaultKeyboard{
-		pressed: sync.Map{},
-		events:  make(chan Key),
+	d := &defaultKeyboard{
+		pressed:      sync.Map{},
+		events:       make(chan Key),
+		searchedKeys: make(map[string]bool),
 	}
+	go func() {
+		t := time.NewTicker(1 * time.Second)
+		for range t.C {
+			fmt.Println(d.searchedKeys)
+		}
+	}()
+	return d
 }
 
 func (d *defaultKeyboard) Wait() Key {
@@ -104,6 +105,7 @@ func (d *defaultKeyboard) Wait() Key {
 }
 
 func (d *defaultKeyboard) IsDown(key Key) bool {
+	d.searchedKeys[string(d.MapKeyToRune(key))] = true
 	val, _ := d.pressed.LoadOrStore(key, false)
 	return val.(bool)
 }

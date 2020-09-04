@@ -71,3 +71,13 @@ footer {
     right: 0;
     height: 30px;
 }
+
+.gameHelp {
+    margin-top: 20px;
+    border: darksalmon solid 5px;
+    border-radius: 15px;
+    padding: 10px;
+    width: 660px;
+    height: 100%;
+    box-shadow: 3px 5px 5px #8c8285;
+}
