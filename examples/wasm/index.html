@@ -23,89 +23,120 @@
 
 <body>
 <script src="wasm_exec.js"></script>
-<h1 class="title">Chip-8</h1>
+<h1 class="title heavy">Chip-8</h1>
+<button type="button" class="help btn btn-outline-secondary" data-toggle="modal" data-target="#helpModal">
+    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-question-circle" fill="currentColor"
+         xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+        <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+    </svg>
+</button>
 <div class="device">
     <div class="cartridge">
         <input type="file" id="file" hidden>
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span data-toggle="tooltip" data-placement="top" title="Load ROM from your computer or choose from a library!">Load ROM</span>
-            </button>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#" onclick="document.getElementById('file').click()">Load from a file</a>
-                <div class="dropdown-divider"></div>
-                <h6 class="dropdown-header">Preexisting ROMs</h6>
-                <a class="dropdown-item" href="#" onclick="loadRom('15PUZZLE')">15PUZZLE</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('BLINKY')">BLINKY</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('BLITZ')">BLITZ</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Breakout [Carmelo Cortez, 1979].ch8')">Breakout
-                    [Carmelo Cortez, 1979].ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('BRIX')">BRIX</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Brix [Andreas Gustafsson, 1990].ch8')">Brix [Andreas
-                    Gustafsson, 1990].ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Chip8 emulator Logo [Garstyciuks].ch8')">Chip8
-                    emulator Logo [Garstyciuks].ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Chip8 Picture.ch8')">Chip8 Picture.ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Clock Program [Bill Fisher, 1981].ch8')">Clock
-                    Program [Bill Fisher, 1981].ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('CONNECT4')">CONNECT4</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Delay Timer Test [Matthew Mikolay, 2010].ch8')">Delay
-                    Timer Test [Matthew Mikolay, 2010].ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('GUESS')">GUESS</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('HIDDEN')">HIDDEN</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('IBM Logo.ch8')">IBM Logo.ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('INVADERS')">INVADERS</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('jason.ch8')">jason.ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('KALEID')">KALEID</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Keypad Test [Hap, 2006].ch8')">Keypad Test [Hap,
-                    2006].ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('MAZE')">MAZE</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Maze (alt) [David Winter, 199x].ch8')">Maze (alt)
-                    [David Winter, 199x].ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Maze (alt) [David Winter, 199x].txt')">Maze (alt)
-                    [David Winter, 199x].txt</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Maze [David Winter, 199x].ch8')">Maze [David Winter,
-                    199x].ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Maze [David Winter, 199x].txt')">Maze [David Winter,
-                    199x].txt</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('MERLIN')">MERLIN</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('MISSILE')">MISSILE</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Particle Demo [zeroZshadow, 2008].ch8')">Particle
-                    Demo [zeroZshadow, 2008].ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Particle Demo [zeroZshadow, 2008].txt')">Particle
-                    Demo [zeroZshadow, 2008].txt</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('PONG')">PONG</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('PONG2')">PONG2</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Pong (alt).ch8')">Pong (alt).ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('PUZZLE')">PUZZLE</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Random Number Test [Matthew Mikolay, 2010].ch8')">Random
-                    Number Test [Matthew Mikolay, 2010].ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Sierpinski [Sergey Naydenov, 2010].ch8')">Sierpinski
-                    [Sergey Naydenov, 2010].ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Sirpinski [Sergey Naydenov, 2010].ch8')">Sirpinski
-                    [Sergey Naydenov, 2010].ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Space Invaders [David Winter].ch8')">Space Invaders
-                    [David Winter].ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Stars [Sergey Naydenov, 2010].ch8')">Stars [Sergey
-                    Naydenov, 2010].ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('SYZYGY')">SYZYGY</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('TANK')">TANK</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('TETRIS')">TETRIS</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Tetris [Fran Dachille, 1991].ch8')">Tetris [Fran
-                    Dachille, 1991].ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('TICTAC')">TICTAC</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Trip8 Demo (2008) [Revival Studios].ch8')">Trip8
-                    Demo (2008) [Revival Studios].ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Trip8 Demo (2008) [Revival Studios].txt')">Trip8
-                    Demo (2008) [Revival Studios].txt</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('UFO')">UFO</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('VBRIX')">VBRIX</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('VERS')">VERS</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('WIPEOFF')">WIPEOFF</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Zero Demo [zeroZshadow, 2007].ch8')">Zero Demo
-                    [zeroZshadow, 2007].ch8</a>
-                <a class="dropdown-item" href="#" onclick="loadRom('Zero Demo [zeroZshadow, 2007].txt')">Zero Demo
-                    [zeroZshadow, 2007].txt</a>
+        <div data-toggle="tooltip" data-placement="left" title="Load ROM from your computer or choose from a library!">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-archive-fill" fill="currentColor"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z"/>
+                    </svg>&nbsp;&nbsp;<span class="heavy">Load ROM</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#" onclick="document.getElementById('file').click()">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cloud-upload" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773 16 9.569 14.502 11 12.687 11H10a.5.5 0 0 1 0-1h2.688C13.979 10 15 8.988 15 7.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 2.825 10.328 1 8 1a4.53 4.53 0 0 0-2.941 1.1c-.757.652-1.153 1.438-1.153 2.055v.448l-.445.049C2.064 4.805 1 5.952 1 7.318 1 8.785 2.23 10 3.781 10H6a.5.5 0 0 1 0 1H3.781C1.708 11 0 9.366 0 7.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383z"/>
+                            <path fill-rule="evenodd"
+                                  d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                        </svg>
+                        Load from a file
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <h6 class="dropdown-header">Preexisting ROMs</h6>
+                    <a class="dropdown-item" href="#" onclick="loadRom('15PUZZLE')">15PUZZLE</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('BLINKY')">BLINKY</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('BLITZ')">BLITZ</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Breakout [Carmelo Cortez, 1979].ch8')">Breakout
+                        [Carmelo Cortez, 1979].ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('BRIX')">BRIX</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Brix [Andreas Gustafsson, 1990].ch8')">Brix
+                        [Andreas
+                        Gustafsson, 1990].ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Chip8 emulator Logo [Garstyciuks].ch8')">Chip8
+                        emulator Logo [Garstyciuks].ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Chip8 Picture.ch8')">Chip8 Picture.ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Clock Program [Bill Fisher, 1981].ch8')">Clock
+                        Program [Bill Fisher, 1981].ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('CONNECT4')">CONNECT4</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Delay Timer Test [Matthew Mikolay, 2010].ch8')">Delay
+                        Timer Test [Matthew Mikolay, 2010].ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('GUESS')">GUESS</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('HIDDEN')">HIDDEN</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('IBM Logo.ch8')">IBM Logo.ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('INVADERS')">INVADERS</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('jason.ch8')">jason.ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('KALEID')">KALEID</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Keypad Test [Hap, 2006].ch8')">Keypad Test [Hap,
+                        2006].ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('MAZE')">MAZE</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Maze (alt) [David Winter, 199x].ch8')">Maze
+                        (alt)
+                        [David Winter, 199x].ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Maze (alt) [David Winter, 199x].txt')">Maze
+                        (alt)
+                        [David Winter, 199x].txt</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Maze [David Winter, 199x].ch8')">Maze [David
+                        Winter,
+                        199x].ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Maze [David Winter, 199x].txt')">Maze [David
+                        Winter,
+                        199x].txt</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('MERLIN')">MERLIN</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('MISSILE')">MISSILE</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Particle Demo [zeroZshadow, 2008].ch8')">Particle
+                        Demo [zeroZshadow, 2008].ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Particle Demo [zeroZshadow, 2008].txt')">Particle
+                        Demo [zeroZshadow, 2008].txt</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('PONG')">PONG</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('PONG2')">PONG2</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Pong (alt).ch8')">Pong (alt).ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('PUZZLE')">PUZZLE</a>
+                    <a class="dropdown-item" href="#"
+                       onclick="loadRom('Random Number Test [Matthew Mikolay, 2010].ch8')">Random
+                        Number Test [Matthew Mikolay, 2010].ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Sierpinski [Sergey Naydenov, 2010].ch8')">Sierpinski
+                        [Sergey Naydenov, 2010].ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Sirpinski [Sergey Naydenov, 2010].ch8')">Sirpinski
+                        [Sergey Naydenov, 2010].ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Space Invaders [David Winter].ch8')">Space
+                        Invaders
+                        [David Winter].ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Stars [Sergey Naydenov, 2010].ch8')">Stars
+                        [Sergey
+                        Naydenov, 2010].ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('SYZYGY')">SYZYGY</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('TANK')">TANK</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('TETRIS')">TETRIS</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Tetris [Fran Dachille, 1991].ch8')">Tetris [Fran
+                        Dachille, 1991].ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('TICTAC')">TICTAC</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Trip8 Demo (2008) [Revival Studios].ch8')">Trip8
+                        Demo (2008) [Revival Studios].ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Trip8 Demo (2008) [Revival Studios].txt')">Trip8
+                        Demo (2008) [Revival Studios].txt</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('UFO')">UFO</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('VBRIX')">VBRIX</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('VERS')">VERS</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('WIPEOFF')">WIPEOFF</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Zero Demo [zeroZshadow, 2007].ch8')">Zero Demo
+                        [zeroZshadow, 2007].ch8</a>
+                    <a class="dropdown-item" href="#" onclick="loadRom('Zero Demo [zeroZshadow, 2007].txt')">Zero Demo
+                        [zeroZshadow, 2007].txt</a>
+                </div>
             </div>
         </div>
     </div>
@@ -121,22 +152,72 @@
             </svg>
         </button>
         <div class="keyboard">
-            <button type="button" id="key1" class="btn btn-dark" onmousedown="down('1')" onmouseup="up('1')">1</button>
-            <button type="button" id="key2" class="btn btn-dark" onmousedown="down('2')" onmouseup="up('2')">2</button>
-            <button type="button" id="key3" class="btn btn-dark" onmousedown="down('3')" onmouseup="up('3')">3</button>
-            <button type="button" id="keyC" class="btn btn-dark" onmousedown="down('c')" onmouseup="up('c')">C</button>
-            <button type="button" id="key4" class="btn btn-dark" onmousedown="down('4')" onmouseup="up('4')">4</button>
-            <button type="button" id="key5" class="btn btn-dark" onmousedown="down('5')" onmouseup="up('5')">5</button>
-            <button type="button" id="key6" class="btn btn-dark" onmousedown="down('6')" onmouseup="up('6')">6</button>
-            <button type="button" id="keyD" class="btn btn-dark" onmousedown="down('d')" onmouseup="up('d')">D</button>
-            <button type="button" id="key7" class="btn btn-dark" onmousedown="down('7')" onmouseup="up('7')">7</button>
-            <button type="button" id="key8" class="btn btn-dark" onmousedown="down('8')" onmouseup="up('8')">8</button>
-            <button type="button" id="key9" class="btn btn-dark" onmousedown="down('9')" onmouseup="up('9')">9</button>
-            <button type="button" id="keyE" class="btn btn-dark" onmousedown="down('e')" onmouseup="up('e')">E</button>
-            <button type="button" id="keyA" class="btn btn-dark" onmousedown="down('a')" onmouseup="up('a')">A</button>
-            <button type="button" id="key0" class="btn btn-dark" onmousedown="down('0')" onmouseup="up('0')">0</button>
-            <button type="button" id="keyB" class="btn btn-dark" onmousedown="down('b')" onmouseup="up('b')">B</button>
-            <button type="button" id="keyF" class="btn btn-dark" onmousedown="down('f')" onmouseup="up('f')">F</button>
+            <button type="button" id="key1" class="btn btn-dark heavy" onmousedown="down('1')" onmouseup="up('1')">1
+            </button>
+            <button type="button" id="key2" class="btn btn-dark heavy" onmousedown="down('2')" onmouseup="up('2')">2
+            </button>
+            <button type="button" id="key3" class="btn btn-dark heavy" onmousedown="down('3')" onmouseup="up('3')">3
+            </button>
+            <button type="button" id="keyC" class="btn btn-dark heavy" onmousedown="down('c')" onmouseup="up('c')">C
+            </button>
+            <button type="button" id="key4" class="btn btn-dark heavy" onmousedown="down('4')" onmouseup="up('4')">4
+            </button>
+            <button type="button" id="key5" class="btn btn-dark heavy" onmousedown="down('5')" onmouseup="up('5')">5
+            </button>
+            <button type="button" id="key6" class="btn btn-dark heavy" onmousedown="down('6')" onmouseup="up('6')">6
+            </button>
+            <button type="button" id="keyD" class="btn btn-dark heavy" onmousedown="down('d')" onmouseup="up('d')">D
+            </button>
+            <button type="button" id="key7" class="btn btn-dark heavy" onmousedown="down('7')" onmouseup="up('7')">7
+            </button>
+            <button type="button" id="key8" class="btn btn-dark heavy" onmousedown="down('8')" onmouseup="up('8')">8
+            </button>
+            <button type="button" id="key9" class="btn btn-dark heavy" onmousedown="down('9')" onmouseup="up('9')">9
+            </button>
+            <button type="button" id="keyE" class="btn btn-dark heavy" onmousedown="down('e')" onmouseup="up('e')">E
+            </button>
+            <button type="button" id="keyA" class="btn btn-dark heavy" onmousedown="down('a')" onmouseup="up('a')">A
+            </button>
+            <button type="button" id="key0" class="btn btn-dark heavy" onmousedown="down('0')" onmouseup="up('0')">0
+            </button>
+            <button type="button" id="keyB" class="btn btn-dark heavy" onmousedown="down('b')" onmouseup="up('b')">B
+            </button>
+            <button type="button" id="keyF" class="btn btn-dark heavy" onmousedown="down('f')" onmouseup="up('f')">F
+            </button>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="helpModalLabel">Chip-8 emulator help</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4>What is Chip-8?</h4>
+                <p>
+                    CHIP-8 is an interpreted programming language, developed by Joseph Weisbecker.
+                    It was made to allow video games to be more easily programmed for these computers. <a
+                            href="https://en.wikipedia.org/wiki/CHIP-8">[Source]</a>
+                </p>
+                <h4>How to use this emulator?</h4>
+                <ol>
+                    <li>
+                        Load ROM by pressing <u>Load ROM</u> button <small><br>Note: you can load your own ROM file or
+                            choose from our library of preexisting ROMs</small>
+                    </li>
+                    <li>Press the red power button - start the Chip-8 emulator</li>
+                    <li>You can use your keyboard or use the display keyboard for controls</li>
+                </ol>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-dark" id="runExampleBtn" onclick="runExample()">Run an example!
+                </button>
+            </div>
         </div>
     </div>
 </div>
@@ -153,14 +234,13 @@
     const defCol = document.getElementById('keyA').style.backgroundColor;
 
 
-
     window.addEventListener('keydown', ev => {
         let elementId = `key${ev.key.toUpperCase()}`;
         let elem = document.getElementById(elementId);
         if (elem == null) {
             return;
         }
-        elem.style.backgroundColor="white";
+        elem.style.backgroundColor = "white";
         if (typeof down === "function") {
             down(ev.key);
         }
@@ -171,7 +251,7 @@
         if (elem == null) {
             return;
         }
-        elem.style.backgroundColor=defCol;
+        elem.style.backgroundColor = defCol;
         if (typeof up === "function") {
             up(ev.key);
         }
@@ -188,14 +268,24 @@
     }, false);
 
     function loadRom(name) {
-        fetch(`roms/${name}`).then(value => {
-            value.arrayBuffer().then(value1 => {
-               document.buffer = new Uint8Array(value1);
-            });
-        })
+        _loadRom(name)
+            .then(value => console.log('loaded ROM'))
             .catch(reason => console.error(reason));
     }
+
+    async function _loadRom(name) {
+        const response = await fetch(`roms/${name}`)
+        document.buffer = new Uint8Array(await response.arrayBuffer());
+    }
+
+    function runExample() {
+        _loadRom('BRIX').then(value => {
+            $('#helpModal').modal('toggle');
+            $('#runExampleBtn').prop('disabled', true);
+            runChip();
+        });
+    }
 </script>
-<footer>Made by <a href="https://github.com/ffhan">@ffhan</a></footer>
+<footer><h4 class="heavy"><a href="https://github.com/ffhan">@ffhan</a></h4></footer>
 </body>
 </html>
