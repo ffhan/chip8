@@ -262,15 +262,16 @@
     async function _loadRom(name) {
         const response = await fetch(`roms/${name}`)
         document.buffer = new Uint8Array(await response.arrayBuffer());
+        console.log(document.buffer);
     }
 
     function runExample() {
         clearHelp();
-        _loadRom('BRIX').then(value => {
+        _loadRom('Brix [Andreas Gustafsson, 1990].ch8').then(value => {
             $('#helpModal').modal('toggle');
             runChip();
         });
-        showHelp(name).then(value => console.log('loaded help'))
+        showHelp('Brix [Andreas Gustafsson, 1990].ch8').then(value => console.log('loaded help'))
             .catch(reason => console.error(reason));
     }
 </script>

@@ -1,7 +1,6 @@
 package chip8
 
 import (
-	"fmt"
 	"sync"
 	"time"
 )
@@ -90,12 +89,12 @@ func NewDefaultKeyboard() *defaultKeyboard {
 		events:       make(chan Key),
 		searchedKeys: make(map[string]bool),
 	}
-	go func() {
-		t := time.NewTicker(1 * time.Second)
-		for range t.C {
-			fmt.Println(d.searchedKeys)
-		}
-	}()
+	//go func() {
+	//	t := time.NewTicker(1 * time.Second)
+	//	for range t.C {
+	//		fmt.Println(d.searchedKeys)
+	//	}
+	//}()
 	return d
 }
 
