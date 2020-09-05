@@ -3,7 +3,7 @@ package wasm
 import "syscall/js"
 
 type display struct {
-	buffer        [][]byte
+	buffer        []byte
 	width, height int
 	context       js.Value
 }
@@ -13,10 +13,7 @@ func NewDisplay(width int, height int) *display {
 	canvas.Set("width", width*10)
 	canvas.Set("height", height*10)
 
-	buf := make([][]byte, height)
-	for i := range buf {
-		buf[i] = make([]byte, width)
-	}
+	buf := make([]byte, width*height)
 
 	d := &display{
 		buffer:  buf,
@@ -30,7 +27,8 @@ func NewDisplay(width int, height int) *display {
 func (d *display) Clear() {
 	for y := 0; y < d.height; y++ {
 		for x := 0; x < d.width; x++ {
-			d.buffer[y][x] = 0
+			idx := d.width*y + x
+			d.buffer[idx] = 0
 		}
 	}
 }
@@ -41,11 +39,8 @@ func (d *display) Run() error {
 }
 
 func (d *display) Repaint() {
-	for y := range d.buffer {
-		for x := range d.buffer[y] {
-			d.write(x, y, d.buffer[y][x])
-		}
-	}
+	js.CopyBytesToJS(js.Global().Get("document").Get("vram"), d.buffer)
+	js.Global().Get("repaint").Invoke()
 }
 
 func (d *display) writeByte(x, y, b byte) bool {
@@ -55,9 +50,12 @@ func (d *display) writeByte(x, y, b byte) bool {
 	for i := 0; i < 8; i++ {
 		res := (b & 0x80) >> 7
 		b <<= 1
-		oldRes := d.buffer[yb%d.height][(xb+i)%d.width]
-		d.buffer[yb%d.height][(xb+i)%d.width] ^= res
-		newRes := d.buffer[yb%d.height][(xb+i)%d.width]
+
+		idx := (yb%d.height)*d.width + (xb+i)%d.width
+
+		oldRes := d.buffer[idx]
+		d.buffer[idx] ^= res
+		newRes := d.buffer[idx]
 		if oldRes == 1 && newRes == 0 {
 			collision = true
 		}
