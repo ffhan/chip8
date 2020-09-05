@@ -72,6 +72,21 @@ footer {
     height: 30px;
 }
 
+.glow {
+    -webkit-animation: glow 2s ease-in-out infinite alternate;
+    -moz-animation: glow 2s ease-in-out infinite alternate;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+    from {
+        box-shadow: 0 0 5px #ffffff, 0 0 10px #fff, 0 0 15px #ffb83c, 0 0 20px #ffb83c, 0 0 25px #ffb83c, 0 0 30px #ffb83c, 0 0 35px #ffb83c;
+    }
+    to {
+        box-shadow: 0 0 10px #fff, 0 0 15px #fce975, 0 0 20px #fce975, 0 0 25px #fce975, 0 0 30px #fce975, 0 0 35px #fce975, 0 0 40px #fce975;
+    }
+}
+
 #power-indicator {
     padding-top: 50px;
 }

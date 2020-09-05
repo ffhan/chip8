@@ -19,39 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c755615e-a323-4f2b-a701-3f4a199f1a9c" name="Default Changelist" comment="small bugfixes">
-      <change afterPath="$PROJECT_DIR$/examples/wasm/help/MERLIN.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/wasm/help/MISSILE.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/wasm/help/PONG.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/wasm/help/PONG2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/wasm/help/TANK.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/wasm/help/TICTAC.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/wasm/help/UFO.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/wasm/help/VBRIX.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/wasm/help/VERS.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/wasm/help/WIPEOFF.html" afterDir="false" />
+    <list default="true" id="c755615e-a323-4f2b-a701-3f4a199f1a9c" name="Default Changelist" comment="done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clock.go" beforeDir="false" afterPath="$PROJECT_DIR$/clock.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cpu.go" beforeDir="false" afterPath="$PROJECT_DIR$/cpu.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/display.go" beforeDir="false" afterPath="$PROJECT_DIR$/display.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/fyne/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/examples/fyne/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/wasm/help/KALEID.html" beforeDir="false" afterPath="$PROJECT_DIR$/examples/wasm/help/KALEID.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/wasm/help/MAZE.html" beforeDir="false" afterPath="$PROJECT_DIR$/examples/wasm/help/MAZE.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/examples/wasm/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/examples/wasm/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/examples/wasm/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/examples/wasm/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/wasm/wasm.go" beforeDir="false" afterPath="$PROJECT_DIR$/examples/wasm/wasm.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/wasm/wasm.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/wasm/wasm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fyne/display.go" beforeDir="false" afterPath="$PROJECT_DIR$/fyne/display.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/keyboard.go" beforeDir="false" afterPath="$PROJECT_DIR$/keyboard.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roms/Particle Demo [zeroZshadow, 2008].txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roms/Pong (alt).ch8" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roms/Sirpinski [Sergey Naydenov, 2010].ch8" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roms/Space Invaders [David Winter].ch8" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roms/Trip8 Demo (2008) [Revival Studios].txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roms/Zero Demo [zeroZshadow, 2007].txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runner.go" beforeDir="false" afterPath="$PROJECT_DIR$/runner.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/timers.go" beforeDir="false" afterPath="$PROJECT_DIR$/timers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wasm/display.go" beforeDir="false" afterPath="$PROJECT_DIR$/wasm/display.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +116,7 @@
       <package value="chip8/wasm" />
       <directory value="$PROJECT_DIR$" />
       <method v="2">
-        <option name="RunConfigurationTask" enabled="true" run_configuration_name="go build wasm.go" run_configuration_type="GoApplicationRunConfiguration" />
+        <option name="RunConfigurationTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="main.wasm" type="GoApplicationRunConfiguration" factoryName="Go Application">
@@ -229,7 +200,8 @@
     <MESSAGE value="run example button disable on every run" />
     <MESSAGE value="basic helper, removed some duplicate roms" />
     <MESSAGE value="small bugfixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="small bugfixes" />
+    <MESSAGE value="done" />
+    <option name="LAST_COMMIT_MESSAGE" value="done" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -271,30 +243,30 @@
     </state>
     <state x="748" y="300" key="FileChooserDialogImpl/0.32.1920.1048@0.32.1920.1048" timestamp="1599144876906" />
     <state x="2668" y="276" key="FileChooserDialogImpl/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599231818174" />
-    <state width="1874" height="103" key="GridCell.Tab.0.bottom" timestamp="1599240729420">
+    <state width="1874" height="103" key="GridCell.Tab.0.bottom" timestamp="1599242313601">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="1874" height="208" key="GridCell.Tab.0.bottom/0.32.1920.1048@0.32.1920.1048" timestamp="1599147836560" />
     <state width="1874" height="176" key="GridCell.Tab.0.bottom/0.32.3840.1048@0.32.3840.1048" timestamp="1598807277220" />
-    <state width="1874" height="103" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599240729420" />
-    <state width="1874" height="103" key="GridCell.Tab.0.center" timestamp="1599240729420">
+    <state width="1874" height="103" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599242313601" />
+    <state width="1874" height="103" key="GridCell.Tab.0.center" timestamp="1599242313601">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="1874" height="208" key="GridCell.Tab.0.center/0.32.1920.1048@0.32.1920.1048" timestamp="1599147836558" />
     <state width="1874" height="176" key="GridCell.Tab.0.center/0.32.3840.1048@0.32.3840.1048" timestamp="1598807277220" />
-    <state width="1874" height="103" key="GridCell.Tab.0.center/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599240729420" />
-    <state width="1874" height="103" key="GridCell.Tab.0.left" timestamp="1599240729420">
+    <state width="1874" height="103" key="GridCell.Tab.0.center/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599242313601" />
+    <state width="1874" height="103" key="GridCell.Tab.0.left" timestamp="1599242313601">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="1874" height="208" key="GridCell.Tab.0.left/0.32.1920.1048@0.32.1920.1048" timestamp="1599147836556" />
     <state width="1874" height="176" key="GridCell.Tab.0.left/0.32.3840.1048@0.32.3840.1048" timestamp="1598807277220" />
-    <state width="1874" height="103" key="GridCell.Tab.0.left/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599240729420" />
-    <state width="1874" height="103" key="GridCell.Tab.0.right" timestamp="1599240729420">
+    <state width="1874" height="103" key="GridCell.Tab.0.left/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599242313601" />
+    <state width="1874" height="103" key="GridCell.Tab.0.right" timestamp="1599242313601">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="1874" height="208" key="GridCell.Tab.0.right/0.32.1920.1048@0.32.1920.1048" timestamp="1599147836558" />
     <state width="1874" height="176" key="GridCell.Tab.0.right/0.32.3840.1048@0.32.3840.1048" timestamp="1598807277220" />
-    <state width="1874" height="103" key="GridCell.Tab.0.right/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599240729420" />
+    <state width="1874" height="103" key="GridCell.Tab.0.right/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599242313601" />
     <state width="1874" height="393" key="GridCell.Tab.1.bottom" timestamp="1598890239786">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
@@ -320,11 +292,11 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="3089" y="290" width="540" height="524" key="StructurePopup/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599237784730" />
-    <state x="2480" y="254" key="Vcs.Push.Dialog.v2" timestamp="1599223461923">
+    <state x="2480" y="254" key="Vcs.Push.Dialog.v2" timestamp="1599242253626">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="560" y="278" key="Vcs.Push.Dialog.v2/0.32.1920.1048@0.32.1920.1048" timestamp="1599209568988" />
-    <state x="2480" y="254" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599223461923" />
+    <state x="2480" y="254" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.32.1920.1048@1920.0.1920.1080" timestamp="1599242253626" />
     <state width="960" height="524" key="XDebugger.FullValuePopup" timestamp="1598888070563">
       <screen x="0" y="32" width="1920" height="1048" />
     </state>
